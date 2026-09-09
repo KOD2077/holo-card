@@ -33,47 +33,80 @@
 
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+
+      -webkit-tap-highlight-color:
+        transparent;
     }
 
 
     html,
     body {
+
       width: 100%;
       height: 100%;
+
       margin: 0;
       padding: 0;
+
     }
 
 
     body {
 
+      /*
+        深色背景
+      */
       background:
         #111318;
 
+
+      /*
+        卡片绝对居中
+      */
       display:
         grid;
 
       place-items:
         center;
 
+
+      /*
+        禁止滚动
+      */
       overflow:
         hidden;
 
+
+      /*
+        禁止浏览器手势干扰
+      */
       touch-action:
         none;
 
+
+      /*
+        禁止选中文字
+      */
       user-select:
         none;
 
       -webkit-user-select:
         none;
 
+
+      /*
+        iPhone 安全区域
+      */
       padding:
+
         env(safe-area-inset-top)
+
         env(safe-area-inset-right)
+
         env(safe-area-inset-bottom)
+
         env(safe-area-inset-left);
+
     }
 
 
@@ -83,26 +116,48 @@
 
     .card {
 
+      /*
+        手机屏幕占比
+
+        最大 360px
+      */
       width:
         min(
           82vw,
-          340px
+          360px
         );
 
+
+      /*
+        Pokémon 卡牌比例
+      */
       aspect-ratio:
         0.718;
 
+
+      /*
+        3D perspective
+      */
       perspective:
-        600px;
+        700px;
 
-      touch-action:
-        none;
 
+      /*
+        禁止图片拖拽
+      */
       user-select:
         none;
 
       -webkit-user-select:
         none;
+
+
+      /*
+        防止 pointer 被浏览器接管
+      */
+      touch-action:
+        none;
+
     }
 
 
@@ -112,12 +167,24 @@
 
     .card__rotator {
 
+      /*
+      ==========================================================
+        3D
+      ==========================================================
+      */
+
       --tilt-left-right:
         0deg;
 
       --tilt-up-down:
         0deg;
 
+
+      /*
+      ==========================================================
+        Pointer / Light Position
+      ==========================================================
+      */
 
       --pointer-x:
         50%;
@@ -126,13 +193,43 @@
         50%;
 
 
+      /*
+      ==========================================================
+        Distance
+      ==========================================================
+      */
+
       --pointer-from-center:
         0;
 
 
+      /*
+      ==========================================================
+        Holographic effect
+      ==========================================================
+      */
+
       --effect-intensity:
         0;
 
+
+      /*
+      ==========================================================
+        Shake boost
+
+        摇晃时额外提高亮度
+      ==========================================================
+      */
+
+      --shake-boost:
+        0;
+
+
+      /*
+      ==========================================================
+        Holo background
+      ==========================================================
+      */
 
       --background-x:
         50%;
@@ -142,10 +239,39 @@
 
 
       /*
-        摇晃增强
+      ==========================================================
+        Rainbow spacing
+      ==========================================================
       */
-      --motion-boost:
-        0;
+
+      --space:
+        6%;
+
+
+      /*
+      ==========================================================
+        Rainbow angle
+      ==========================================================
+      */
+
+      --angle:
+        133deg;
+
+
+      /*
+      ==========================================================
+        Foil texture
+      ==========================================================
+      */
+
+      --foil:
+        url(
+          "https://i.imgur.com/vu5azD2.jpeg"
+        );
+
+
+      position:
+        relative;
 
 
       width:
@@ -154,15 +280,20 @@
       height:
         100%;
 
-      position:
-        relative;
-
-      overflow:
-        hidden;
 
       border-radius:
         4.55% / 3.5%;
 
+
+      overflow:
+        hidden;
+
+
+      /*
+      ==========================================================
+        3D
+      ==========================================================
+      */
 
       transform:
 
@@ -178,9 +309,16 @@
       transform-origin:
         center;
 
+
       will-change:
         transform;
 
+
+      /*
+      ==========================================================
+        Shadow
+      ==========================================================
+      */
 
       box-shadow:
 
@@ -192,13 +330,14 @@
           0.46
         ),
 
-        0 6px 18px
+        0 5px 16px
         rgba(
           0,
           0,
           0,
-          0.34
+          0.38
         );
+
     }
 
 
@@ -211,8 +350,10 @@
       position:
         absolute;
 
+
       inset:
         0;
+
 
       width:
         100%;
@@ -220,32 +361,37 @@
       height:
         100%;
 
+
       display:
         block;
+
 
       object-fit:
         cover;
 
+
       border-radius:
         inherit;
+
 
       pointer-events:
         none;
 
+
       user-select:
+        none;
+
+      -webkit-user-select:
         none;
 
       -webkit-user-drag:
         none;
+
     }
 
 
     /* =========================================================
-       MAIN HOLOGRAPHIC SHINE
-
-       保留最开始版本的思路。
-
-       只稍微降低彩虹割裂感。
+       SHINE
     ========================================================= */
 
     .card__shine {
@@ -253,102 +399,186 @@
       position:
         absolute;
 
+
       inset:
         0;
+
 
       border-radius:
         inherit;
 
 
+      /*
+      ==========================================================
+        多层全息纹理
+      ==========================================================
+      */
+
       background-image:
 
 
         /*
-        -------------------------------------------------------
-          连续色谱
-        -------------------------------------------------------
+        --------------------------------------------------------
+          Foil
+        --------------------------------------------------------
         */
 
-        linear-gradient(
+        var(--foil),
 
-          115deg,
 
-          rgba(
-            255,
-            102,
-            130,
-            0.28
+        /*
+        --------------------------------------------------------
+          彩虹
+        --------------------------------------------------------
+        */
+
+        repeating-linear-gradient(
+
+          -33deg,
+
+
+          hsl(
+            2,
+            70%,
+            47%
           )
 
-          0%,
+          calc(
+            var(--space) * 1
+          ),
 
 
-          rgba(
-            255,
-            201,
-            93,
-            0.28
-          )
-
-          17%,
-
-
-          rgba(
-            135,
-            244,
-            170,
-            0.26
-          )
-
-          34%,
-
-
-          rgba(
-            86,
-            220,
-            223,
-            0.28
-          )
-
-          51%,
-
-
-          rgba(
-            95,
-            165,
-            255,
-            0.28
-          )
-
-          67%,
-
-
-          rgba(
-            153,
-            115,
-            255,
-            0.27
-          )
-
-          82%,
-
-
-          rgba(
-            238,
-            112,
+          hsl(
             228,
-            0.24
+            60%,
+            64%
           )
 
-          100%
+          calc(
+            var(--space) * 2
+          ),
+
+
+          hsl(
+            176,
+            55%,
+            39%
+          )
+
+          calc(
+            var(--space) * 3
+          ),
+
+
+          hsl(
+            123,
+            68%,
+            35%
+          )
+
+          calc(
+            var(--space) * 4
+          ),
+
+
+          hsl(
+            283,
+            75%,
+            57%
+          )
+
+          calc(
+            var(--space) * 5
+          ),
+
+
+          hsl(
+            2,
+            70%,
+            47%
+          )
+
+          calc(
+            var(--space) * 6
+          )
 
         ),
 
 
         /*
-        -------------------------------------------------------
+        --------------------------------------------------------
+          金属线
+        --------------------------------------------------------
+        */
+
+        repeating-linear-gradient(
+
+          var(--angle),
+
+
+          hsla(
+            227,
+            53%,
+            12%,
+            0.5
+          )
+
+          0%,
+
+
+          hsl(
+            180,
+            10%,
+            50%
+          )
+
+          2.5%,
+
+
+          hsl(
+            83,
+            50%,
+            35%
+          )
+
+          5%,
+
+
+          hsl(
+            180,
+            10%,
+            50%
+          )
+
+          7.5%,
+
+
+          hsla(
+            227,
+            53%,
+            12%,
+            0.5
+          )
+
+          10%,
+
+
+          hsla(
+            227,
+            53%,
+            12%,
+            0.5
+          )
+
+          15%
+
+        ),
+
+
+        /*
+        --------------------------------------------------------
           鼠标/陀螺仪光源
-        -------------------------------------------------------
+        --------------------------------------------------------
         */
 
         radial-gradient(
@@ -361,50 +591,101 @@
           var(--pointer-y),
 
 
-          rgba(
-            255,
-            255,
-            255,
-            0.55
+          hsla(
+            189,
+            76%,
+            77%,
+            0.72
           )
 
           0%,
 
 
-          rgba(
-            164,
-            255,
-            246,
-            0.25
+          hsla(
+            147,
+            59%,
+            77%,
+            0.62
           )
 
           24%,
 
 
-          rgba(
-            170,
-            132,
-            255,
-            0.14
+          hsla(
+            271,
+            55%,
+            69%,
+            0.58
           )
 
-          47%,
+          49%,
 
 
-          transparent
-          74%
+          hsla(
+            355,
+            56%,
+            72%,
+            0.48
+          )
+
+          75%
 
         );
 
 
+      /*
+      ==========================================================
+        Background size
+      ==========================================================
+      */
+
       background-size:
 
-        210% 210%,
+        60% 30%,
+
+        1100% 1100%,
+
+        600% 600%,
 
         200% 200%;
 
 
+      /*
+      ==========================================================
+        Blend
+      ==========================================================
+      */
+
+      background-blend-mode:
+
+        difference,
+        luminosity,
+        soft-light,
+        normal;
+
+
+      /*
+      ==========================================================
+        Color dodge
+      ==========================================================
+      */
+
+      mix-blend-mode:
+        color-dodge;
+
+
+      /*
+      ==========================================================
+        Position
+      ==========================================================
+      */
+
       background-position:
+
+        center,
+
+        var(--background-x)
+        var(--background-y),
 
         var(--background-x)
         var(--background-y),
@@ -413,19 +694,279 @@
         var(--background-y);
 
 
-      background-blend-mode:
+      /*
+      ==========================================================
+        Effect intensity
 
-        soft-light,
-        screen;
+        shake boost 会额外增强
+      ==========================================================
+      */
 
+      opacity:
 
-      mix-blend-mode:
-        color-dodge;
+        min(
+
+          1,
+
+          calc(
+            var(--effect-intensity)
+            +
+            (
+              var(--shake-boost)
+              *
+              0.28
+            )
+          )
+
+        );
 
 
       /*
-        比原版稍微亮一点，
-        但不会变成整张彩虹。
+      ==========================================================
+        光亮
+      ==========================================================
+      */
+
+      filter:
+
+        brightness(
+
+          calc(
+
+            0.42
+
+            +
+
+            (
+              var(--pointer-from-center)
+              *
+              0.4
+            )
+
+            +
+
+            (
+              var(--shake-boost)
+              *
+              0.75
+            )
+
+          )
+
+        )
+
+        contrast(
+          calc(
+            2 +
+            var(--shake-boost)
+          )
+        )
+
+        saturate(
+          calc(
+            1 +
+            var(--shake-boost)
+          )
+        );
+
+
+      pointer-events:
+        none;
+
+    }
+
+
+    /* =========================================================
+       SUNPILLAR
+    ========================================================= */
+
+    .card__shine::after {
+
+      --sunpillar-1:
+        hsl(2, 100%, 73%);
+
+      --sunpillar-2:
+        hsl(53, 100%, 69%);
+
+      --sunpillar-3:
+        hsl(93, 100%, 69%);
+
+      --sunpillar-4:
+        hsl(176, 100%, 76%);
+
+      --sunpillar-5:
+        hsl(228, 100%, 74%);
+
+      --sunpillar-6:
+        hsl(283, 100%, 73%);
+
+
+      content:
+        "";
+
+
+      position:
+        absolute;
+
+
+      inset:
+        0;
+
+
+      border-radius:
+        inherit;
+
+
+      /*
+      ==========================================================
+        Rainbow pillar
+      ==========================================================
+      */
+
+      background-image:
+
+
+        repeating-linear-gradient(
+
+          0deg,
+
+
+          var(--sunpillar-6)
+
+          calc(
+            var(--space) * 1
+          ),
+
+
+          var(--sunpillar-1)
+
+          calc(
+            var(--space) * 2
+          ),
+
+
+          var(--sunpillar-2)
+
+          calc(
+            var(--space) * 3
+          ),
+
+
+          var(--sunpillar-3)
+
+          calc(
+            var(--space) * 4
+          ),
+
+
+          var(--sunpillar-4)
+
+          calc(
+            var(--space) * 5
+          ),
+
+
+          var(--sunpillar-5)
+
+          calc(
+            var(--space) * 6
+          ),
+
+
+          var(--sunpillar-6)
+
+          calc(
+            var(--space) * 7
+          )
+
+        ),
+
+
+        /*
+        ========================================================
+          Metal
+        ========================================================
+        */
+
+        repeating-linear-gradient(
+
+          var(--angle),
+
+
+          #0e152e
+
+          0%,
+
+
+          hsl(
+            180,
+            10%,
+            60%
+          )
+
+          3.8%,
+
+
+          hsl(
+            180,
+            29%,
+            66%
+          )
+
+          4.5%,
+
+
+          hsl(
+            180,
+            10%,
+            60%
+          )
+
+          5.2%,
+
+
+          #0e152e
+
+          10%,
+
+
+          #0e152e
+
+          12%
+
+        );
+
+
+      background-blend-mode:
+
+        hue,
+        normal;
+
+
+      background-size:
+
+        200% 700%,
+
+        300% 100%;
+
+
+      background-position:
+
+        0%
+        var(--background-y),
+
+        var(--background-x)
+        var(--background-y);
+
+
+      mix-blend-mode:
+        lighten;
+
+
+      /*
+      ==========================================================
+        摇晃时增强彩虹
+      ==========================================================
       */
 
       opacity:
@@ -436,62 +977,29 @@
 
           calc(
 
-            0.18
+            (
+              0.3
+              *
+              var(--effect-intensity)
+            )
 
             +
 
-            var(--effect-intensity)
-            *
-            0.50
+            (
+              var(--effect-intensity)
+              *
+              var(--pointer-from-center)
+              *
+              0.5
+            )
 
             +
 
-            var(--motion-boost)
-            *
-            0.16
-
-          )
-
-        );
-
-
-      filter:
-
-        brightness(
-
-          calc(
-
-            0.60
-
-            +
-
-            var(--pointer-from-center)
-            *
-            0.45
-
-            +
-
-            var(--motion-boost)
-            *
-            0.35
-
-          )
-
-        )
-
-        contrast(1.55)
-
-        saturate(
-
-          calc(
-
-            1
-
-            +
-
-            var(--motion-boost)
-            *
-            0.35
+            (
+              var(--shake-boost)
+              *
+              0.48
+            )
 
           )
 
@@ -500,131 +1008,12 @@
 
       pointer-events:
         none;
+
     }
 
 
     /* =========================================================
-       SECOND RAINBOW LAYER
-
-       比原版柔和，只作为色彩流动。
-    ========================================================= */
-
-    .card__shine::after {
-
-      content:
-        "";
-
-      position:
-        absolute;
-
-      inset:
-        0;
-
-      border-radius:
-        inherit;
-
-
-      background:
-
-        linear-gradient(
-
-          95deg,
-
-          rgba(
-            255,
-            90,
-            120,
-            0.18
-          ),
-
-          rgba(
-            255,
-            220,
-            110,
-            0.16
-          ),
-
-          rgba(
-            110,
-            255,
-            210,
-            0.15
-          ),
-
-          rgba(
-            105,
-            205,
-            255,
-            0.18
-          ),
-
-          rgba(
-            155,
-            125,
-            255,
-            0.17
-          ),
-
-          rgba(
-            240,
-            110,
-            220,
-            0.15
-          )
-
-        );
-
-
-      background-size:
-        230% 230%;
-
-
-      background-position:
-
-        calc(
-          var(--background-x)
-          + 8%
-        )
-
-        calc(
-          var(--background-y)
-          - 5%
-        );
-
-
-      mix-blend-mode:
-        lighten;
-
-
-      opacity:
-
-        calc(
-
-          var(--effect-intensity)
-          *
-          0.38
-
-          +
-
-          var(--motion-boost)
-          *
-          0.18
-
-        );
-
-
-      filter:
-        blur(1px)
-        saturate(1.1);
-
-
-      pointer-events:
-        none;
-    }
-
-
-    /* =========================================================
-       SOFT GLARE
+       GLARE
     ========================================================= */
 
     .card__glare {
@@ -632,20 +1021,20 @@
       position:
         absolute;
 
+
       inset:
         0;
+
 
       border-radius:
         inherit;
 
 
-      background:
+      background-image:
 
         radial-gradient(
 
-          ellipse
-          58%
-          48%
+          farthest-corner circle
 
           at
 
@@ -653,38 +1042,34 @@
           var(--pointer-y),
 
 
-          rgba(
-            255,
-            255,
-            255,
-            0.78
+          hsla(
+            0,
+            0%,
+            100%,
+            0.84
           )
 
           0%,
 
 
-          rgba(
-            255,
-            255,
-            255,
-            0.24
+          hsla(
+            0,
+            0%,
+            100%,
+            0.12
           )
 
-          20%,
+          32%,
 
 
-          rgba(
-            255,
-            255,
-            255,
-            0.06
+          hsla(
+            0,
+            0%,
+            0%,
+            0
           )
 
-          40%,
-
-
-          transparent
-          68%
+          100%
 
         );
 
@@ -694,7 +1079,9 @@
 
 
       /*
-        比原版增强。
+      ==========================================================
+        摇晃时高光增强
+      ==========================================================
       */
 
       opacity:
@@ -705,302 +1092,175 @@
 
           calc(
 
-            var(--effect-intensity)
-            *
-            0.36
+            (
+              0.2
+              *
+              var(--effect-intensity)
+            )
 
             +
 
-            var(--pointer-from-center)
-            *
-            var(--effect-intensity)
-            *
-            0.60
+            (
+              var(--effect-intensity)
+              *
+              var(--pointer-from-center)
+              *
+              0.8
+            )
 
             +
 
-            var(--motion-boost)
-            *
-            0.46
+            (
+              var(--shake-boost)
+              *
+              0.55
+            )
 
           )
 
         );
 
 
-      filter:
-
-        blur(0.8px)
-
-        brightness(1.12);
-
-
       pointer-events:
         none;
+
     }
 
 
     /* =========================================================
-       SHIMMER
+       SHAKE FLASH
     ========================================================= */
 
-    .card__shimmer {
+    .card__flash {
 
       position:
         absolute;
 
-      inset:
-        -65%;
 
+      inset:
+        -15%;
+
+
+      border-radius:
+        inherit;
+
+
+      /*
+        一条高速扫过卡面的白色彩光
+      */
 
       background:
 
         linear-gradient(
 
-          108deg,
+          110deg,
 
-          transparent 34%,
-
-
-          rgba(
-            255,
-            255,
-            255,
-            0
-          )
-
-          43%,
-
+          transparent 25%,
 
           rgba(
             255,
             255,
             255,
-            0.08
-          )
-
-          46%,
-
+            0.82
+          ) 45%,
 
           rgba(
+            160,
             255,
             255,
-            255,
-            0.48
-          )
+            0.36
+          ) 50%,
 
-          49%,
-
-
-          rgba(
-            245,
-            255,
-            255,
-            0.78
-          )
-
-          50%,
-
-
-          rgba(
-            220,
-            255,
-            255,
-            0.46
-          )
-
-          52%,
-
-
-          rgba(
-            255,
-            255,
-            255,
-            0.08
-          )
-
-          55%,
-
-
-          transparent 62%
+          transparent 70%
 
         );
+
+
+      /*
+        初始不显示
+      */
+
+      opacity:
+        0;
 
 
       transform:
-
-        translateX(
-
-          calc(
-
-            (
-              var(--pointer-x)
-              -
-              50%
-            )
-
-            *
-            1.25
-
-          )
-
-        )
-
-        translateY(
-
-          calc(
-
-            (
-              var(--pointer-y)
-              -
-              50%
-            )
-
-            *
-            0.75
-
-          )
-
-        );
+        translateX(-130%)
+        skewX(-18deg);
 
 
       mix-blend-mode:
         screen;
 
 
-      /*
-        平时很弱，
-
-        摇晃时明显。
-      */
-
-      opacity:
-
-        calc(
-
-          0.025
-
-          +
-
-          var(--effect-intensity)
-          *
-          0.08
-
-          +
-
-          var(--motion-boost)
-          *
-          0.78
-
-        );
-
-
-      filter:
-
-        blur(
-          4px
-        )
-
-        brightness(
-          1.22
-        );
-
-
       pointer-events:
         none;
+
     }
 
 
-    /* =========================================================
-       EDGE
-    ========================================================= */
+    /*
+    ============================================================
+      FLASH ANIMATION
+    ============================================================
+    */
 
-    .card__edge {
+    .card__flash.is-flashing {
 
-      position:
-        absolute;
-
-      inset:
-        0;
-
-      border-radius:
-        inherit;
-
-
-      box-shadow:
-
-        inset
-        0
-        0
-        0
-        1px
-        rgba(
-          255,
-          255,
-          255,
-          0.18
+      animation:
+        holoFlash
+        420ms
+        cubic-bezier(
+          0.15,
+          0.7,
+          0.25,
+          1
         );
 
-
-      pointer-events:
-        none;
     }
 
 
-    /* =========================================================
-       VIGNETTE
-    ========================================================= */
+    @keyframes holoFlash {
 
-    .card__vignette {
+      0% {
 
-      position:
-        absolute;
+        opacity:
+          0;
 
-      inset:
-        0;
+        transform:
+          translateX(-130%)
+          skewX(-18deg);
 
-      border-radius:
-        inherit;
+      }
 
 
-      background:
+      25% {
 
-        radial-gradient(
+        opacity:
+          0.9;
 
-          ellipse at center,
-
-          transparent
-          48%,
+      }
 
 
-          rgba(
-            0,
-            0,
-            0,
-            0.05
-          )
+      55% {
 
-          75%,
+        opacity:
+          0.45;
+
+      }
 
 
-          rgba(
-            0,
-            0,
-            0,
-            0.22
-          )
+      100% {
 
-          100%
+        opacity:
+          0;
 
-        );
+        transform:
+          translateX(130%)
+          skewX(-18deg);
 
+      }
 
-      mix-blend-mode:
-        multiply;
-
-
-      pointer-events:
-        none;
     }
 
 
@@ -1008,21 +1268,20 @@
        MOBILE
     ========================================================= */
 
-    @media (
-      max-width: 600px
-    ) {
+    @media (max-width: 600px) {
 
       .card {
 
         width:
           min(
-            85vw,
-            350px
+            84vw,
+            360px
           );
 
       }
 
     }
+
 
   </style>
 
@@ -1032,18 +1291,24 @@
 <body>
 
 
+  <!-- ========================================================
+       CARD
+  ======================================================== -->
+
   <div class="card">
 
     <div class="card__rotator">
 
 
-      <!-- ===================================================
-           ★★★ 你的卡片 ★★★
+      <!-- ====================================================
+           ★★★★★
 
-           只需要替换：
+           只需要替换这个：
 
            card.png
-      ==================================================== -->
+
+           与 index.html 放在同一个文件夹即可。
+      ===================================================== -->
 
       <img
         class="card__image"
@@ -1053,33 +1318,30 @@
       >
 
 
-      <!-- 全息色彩 -->
+      <!--
+        Holographic foil
+      -->
+
       <div
         class="card__shine"
       ></div>
 
 
-      <!-- 高光 -->
+      <!--
+        光源
+      -->
+
       <div
         class="card__glare"
       ></div>
 
 
-      <!-- 摇晃产生的闪光 -->
+      <!--
+        摇晃时闪过卡面的光
+      -->
+
       <div
-        class="card__shimmer"
-      ></div>
-
-
-      <!-- 边缘 -->
-      <div
-        class="card__edge"
-      ></div>
-
-
-      <!-- 阴影 -->
-      <div
-        class="card__vignette"
+        class="card__flash"
       ></div>
 
 
@@ -1088,1900 +1350,2057 @@
   </div>
 
 
-<script>
+  <script>
 
-/* ============================================================
-   DOM
-============================================================ */
 
-const card =
-  document.querySelector(
-    ".card"
-  );
+    /* ========================================================
+       DOM
+    ======================================================== */
 
-
-const rotator =
-  document.querySelector(
-    ".card__rotator"
-  );
-
-
-/* ============================================================
-   CURRENT
-============================================================ */
-
-let currentRotateX =
-  0;
-
-
-let currentRotateY =
-  0;
-
-
-let targetRotateX =
-  0;
-
-
-let targetRotateY =
-  0;
-
-
-/*
-  光源
-*/
-
-let currentPointerX =
-  50;
-
-
-let currentPointerY =
-  50;
-
-
-let targetPointerX =
-  50;
-
-
-let targetPointerY =
-  50;
-
-
-/*
-  Holo
-*/
-
-let currentIntensity =
-  0;
-
-
-let targetIntensity =
-  0;
-
-
-/*
-  Motion
-*/
-
-let motionBoost =
-  0;
-
-
-/*
-  animation
-*/
-
-let animationFrame =
-  null;
-
-
-/* ============================================================
-   SENSOR VARIABLES
-============================================================ */
-
-
-/*
-  当前手机中心角度
-*/
-
-let baseBeta =
-  null;
-
-
-let baseGamma =
-  null;
-
-
-/*
-  ★
-
-  只有收到真正的 orientation 数据以后
-  才会变成 true。
-
-  这是为了避免传感器逻辑把
-  鼠标/触摸备用功能提前禁掉。
-*/
-
-let hasOrientationData =
-  false;
-
-
-let hasMotionData =
-  false;
-
-
-/*
-  是否成功注册监听器
-*/
-
-let orientationListenerAdded =
-  false;
-
-
-let motionListenerAdded =
-  false;
-
-
-/* ============================================================
-   SETTINGS
-============================================================ */
-
-
-/*
-  手机陀螺仪灵敏度
-*/
-
-const SENSOR_SENSITIVITY =
-  2.65;
-
-
-/*
-  最大旋转
-*/
-
-const MAX_TILT =
-  18;
-
-
-/*
-  旋转跟随速度
-
-  0.25 左右比较灵敏。
-*/
-
-const ROTATION_SMOOTH =
-  0.25;
-
-
-/*
-  光源稍微慢一点，
-  产生自然的反射滞后。
-*/
-
-const POINTER_SMOOTH =
-  0.17;
-
-
-/*
-  Holo 变化速度
-*/
-
-const INTENSITY_SMOOTH =
-  0.15;
-
-
-/*
-  Motion 响应
-*/
-
-const MOTION_SENSITIVITY =
-  0.095;
-
-
-/*
-  Motion 平滑
-*/
-
-const MOTION_SMOOTH =
-  0.40;
-
-
-/*
-  Motion 衰减
-
-  比最开始版本略长。
-*/
-
-const MOTION_DECAY =
-  0.94;
-
-
-/*
-  触发 Flash 的阈值
-*/
-
-const FLASH_THRESHOLD =
-  2.8;
-
-
-/*
-  Flash 间隔
-*/
-
-const FLASH_COOLDOWN =
-  280;
-
-
-let lastFlashTime =
-  0;
-
-
-/* ============================================================
-   SENSOR PERMISSION
-============================================================ */
-
-
-/*
-  注意：
-
-  不使用 once:true。
-
-  用户如果第一次没有允许，
-  后面还可以再次点击尝试。
-*/
-
-document.addEventListener(
-
-  "pointerdown",
-
-  function () {
-
-    requestSensors();
-
-  },
-
-  {
-    passive: true
-  }
-
-);
-
-
-/* ============================================================
-   REQUEST SENSORS
-============================================================ */
-
-async function requestSensors() {
-
-
-  /*
-  ==========================================================
-    DEVICE ORIENTATION
-  ==========================================================
-  */
-
-  if (
-
-    typeof
-    DeviceOrientationEvent
-    !==
-    "undefined"
-
-    &&
-
-    !orientationListenerAdded
-
-  ) {
-
-    try {
-
-
-      let granted =
-        true;
-
-
-      /*
-      --------------------------------------------------------
-        iOS Safari
-      --------------------------------------------------------
-      */
-
-      if (
-
-        typeof
-        DeviceOrientationEvent
-          .requestPermission
-        ===
-        "function"
-
-      ) {
-
-        const result =
-
-          await
-          DeviceOrientationEvent
-            .requestPermission();
-
-
-        granted =
-          result ===
-          "granted";
-
-      }
-
-
-      /*
-      --------------------------------------------------------
-        注册监听
-      --------------------------------------------------------
-      */
-
-      if (
-        granted
-      ) {
-
-        window.addEventListener(
-
-          "deviceorientation",
-
-          handleOrientation,
-
-          true
-
-        );
-
-
-        orientationListenerAdded =
-          true;
-
-      }
-
-    }
-
-    catch (
-      error
-    ) {
-
-      console.warn(
-        "DeviceOrientation permission:",
-        error
+    const card =
+      document.querySelector(
+        ".card"
       );
 
-    }
 
-  }
-
-
-  /*
-  ==========================================================
-    DEVICE MOTION
-  ==========================================================
-  */
-
-  if (
-
-    typeof
-    DeviceMotionEvent
-    !==
-    "undefined"
-
-    &&
-
-    !motionListenerAdded
-
-  ) {
-
-    try {
-
-
-      let granted =
-        true;
-
-
-      /*
-      --------------------------------------------------------
-        iOS Safari
-      --------------------------------------------------------
-      */
-
-      if (
-
-        typeof
-        DeviceMotionEvent
-          .requestPermission
-        ===
-        "function"
-
-      ) {
-
-        const result =
-
-          await
-          DeviceMotionEvent
-            .requestPermission();
-
-
-        granted =
-          result ===
-          "granted";
-
-      }
-
-
-      /*
-      --------------------------------------------------------
-        注册 motion
-      --------------------------------------------------------
-      */
-
-      if (
-        granted
-      ) {
-
-        window.addEventListener(
-
-          "devicemotion",
-
-          handleMotion,
-
-          true
-
-        );
-
-
-        motionListenerAdded =
-          true;
-
-      }
-
-    }
-
-    catch (
-      error
-    ) {
-
-      console.warn(
-        "DeviceMotion permission:",
-        error
+    const rotator =
+      document.querySelector(
+        ".card__rotator"
       );
 
-    }
 
-  }
-
-}
-
-
-/* ============================================================
-   ORIENTATION
-============================================================ */
-
-function handleOrientation(
-  event
-) {
+    const flash =
+      document.querySelector(
+        ".card__flash"
+      );
 
 
-  const beta =
-    Number(
-      event.beta
-    );
+    /* ========================================================
+       SPRINGS
+    ======================================================== */
+
+    const rotationSpring =
+      createSpring({
+
+        x: 0,
+
+        y: 0
+
+      });
 
 
-  const gamma =
-    Number(
-      event.gamma
-    );
+    const backgroundSpring =
+      createSpring({
+
+        x: 50,
+
+        y: 50
+
+      });
 
 
-  /*
-  ==========================================================
-    无效数据直接忽略
-  ==========================================================
-  */
+    const pointerSpring =
+      createSpring({
 
-  if (
+        x: 50,
 
-    !Number.isFinite(
-      beta
-    )
+        y: 50,
 
-    ||
+        effectIntensity: 0
 
-    !Number.isFinite(
-      gamma
-    )
-
-  ) {
-
-    return;
-
-  }
+      });
 
 
-  /*
-  ==========================================================
-    ★ 收到真实数据
+    const shakeSpring =
+      createSpring({
 
-    到这里才算陀螺仪真正工作。
-  ==========================================================
-  */
+        value: 0
 
-  hasOrientationData =
-    true;
+      });
 
 
-  /*
-  ==========================================================
-    第一次：
+    const springs = [
 
-    当前姿态 = 中心
-  ==========================================================
-  */
+      rotationSpring,
 
-  if (
+      backgroundSpring,
 
-    baseBeta === null
+      pointerSpring,
 
-    ||
+      shakeSpring
 
-    baseGamma === null
-
-  ) {
-
-    baseBeta =
-      beta;
+    ];
 
 
-    baseGamma =
-      gamma;
+    /* ========================================================
+       SPRING SETTINGS
+    ======================================================== */
+
+    const interactionSettings = {
+
+      stiffness:
+        0.066,
+
+      damping:
+        0.25
+
+    };
 
 
-    targetRotateX =
+    const returnSettings = {
+
+      stiffness:
+        0.012,
+
+      damping:
+        0.08
+
+    };
+
+
+    const shakeSettings = {
+
+      stiffness:
+        0.12,
+
+      damping:
+        0.30
+
+    };
+
+
+    let springSettings =
+      interactionSettings;
+
+
+    /* ========================================================
+       ANIMATION
+    ======================================================== */
+
+    let animationFrame =
+      null;
+
+
+    let lastTimestamp =
       0;
 
 
-    targetRotateY =
+    /* ========================================================
+       SENSOR
+    ======================================================== */
+
+    let sensorEnabled =
+      false;
+
+
+    let orientationReady =
+      false;
+
+
+    /*
+      第一次收到姿态时记录成中心。
+
+      用户不需要把手机摆成绝对水平。
+    */
+
+    let baseBeta =
+      null;
+
+
+    let baseGamma =
+      null;
+
+
+    /* ========================================================
+       SENSOR CONFIG
+    ======================================================== */
+
+    /*
+      陀螺仪灵敏度
+
+      越高：
+
+      手机轻轻动
+      ↓
+      卡片动得越明显
+    */
+
+    const SENSOR_SCALE =
+      2.0;
+
+
+    /*
+      最大卡片倾角
+    */
+
+    const MAX_TILT =
+      17;
+
+
+    /*
+      摇晃触发阈值
+    */
+
+    const SHAKE_THRESHOLD =
+      2.0;
+
+
+    /*
+      摇晃强度
+
+      越大：
+      越容易触发 holo boost
+    */
+
+    const SHAKE_MULTIPLIER =
+      0.55;
+
+
+    /*
+      Flash 冷却
+    */
+
+    let lastFlashTime =
       0;
 
 
-    targetPointerX =
-      50;
+    /*
+      防止 iOS 重复申请权限
+    */
 
+    let permissionRequested =
+      false;
 
-    targetPointerY =
-      50;
 
+    /* ========================================================
+       START
+    ======================================================== */
 
-    targetIntensity =
-      0.16;
+    /*
+      初始化
+    */
 
+    applyVisualState();
 
-    startAnimation();
 
+    /*
+    ===========================================================
+      第一次触摸：
 
-    return;
+      尝试开启设备传感器
+    ===========================================================
+    */
 
-  }
+    document.addEventListener(
 
+      "pointerdown",
 
-  /*
-  ==========================================================
-    Relative angle
-  ==========================================================
-  */
+      async () => {
 
-  let deltaBeta =
+        if (
+          !sensorEnabled
+          &&
+          !permissionRequested
+        ) {
 
-    beta
-    -
-    baseBeta;
+          permissionRequested =
+            true;
 
 
-  let deltaGamma =
-
-    gamma
-    -
-    baseGamma;
-
-
-  /*
-  ==========================================================
-    限制
-  ==========================================================
-  */
-
-  deltaBeta =
-    clamp(
-      deltaBeta,
-      -30,
-      30
-    );
-
-
-  deltaGamma =
-    clamp(
-      deltaGamma,
-      -30,
-      30
-    );
-
-
-  /*
-  ==========================================================
-    非线性
-
-    轻轻动的时候更灵敏。
-  ==========================================================
-  */
-
-  let nx =
-
-    deltaGamma
-    /
-    30;
-
-
-  let ny =
-
-    -deltaBeta
-    /
-    30;
-
-
-  nx =
-
-    Math.tanh(
-
-      nx
-      *
-      SENSOR_SENSITIVITY
-
-    );
-
-
-  ny =
-
-    Math.tanh(
-
-      ny
-      *
-      SENSOR_SENSITIVITY
-
-    );
-
-
-  /*
-  ==========================================================
-    Card rotation
-  ==========================================================
-  */
-
-  targetRotateY =
-
-    nx
-    *
-    MAX_TILT;
-
-
-  targetRotateX =
-
-    ny
-    *
-    MAX_TILT;
-
-
-  /*
-  ==========================================================
-    Light position
-
-    光比卡片移动得稍大一点。
-  ==========================================================
-  */
-
-  targetPointerX =
-
-    50
-    +
-    nx
-    *
-    48;
-
-
-  targetPointerY =
-
-    50
-    -
-    ny
-    *
-    48;
-
-
-  /*
-  ==========================================================
-    Holo intensity
-  ==========================================================
-  */
-
-  const amount =
-
-    Math.min(
-
-      1,
-
-      Math.sqrt(
-
-        nx * nx
-        +
-        ny * ny
-
-      )
-
-    );
-
-
-  targetIntensity =
-
-    0.16
-    +
-    amount
-    *
-    0.84;
-
-
-  startAnimation();
-
-}
-
-
-/* ============================================================
-   MOTION
-============================================================ */
-
-function handleMotion(
-  event
-) {
-
-
-  const acceleration =
-
-    event.acceleration
-
-
-    ||
-
-
-    event.accelerationIncludingGravity;
-
-
-  if (!acceleration) {
-
-    return;
-
-  }
-
-
-  const x =
-    Number(
-      acceleration.x
-    )
-    || 0;
-
-
-  const y =
-    Number(
-      acceleration.y
-    )
-    || 0;
-
-
-  const z =
-    Number(
-      acceleration.z
-    )
-    || 0;
-
-
-  hasMotionData =
-    true;
-
-
-  /*
-  ==========================================================
-    Magnitude
-  ==========================================================
-  */
-
-  const magnitude =
-
-    Math.sqrt(
-
-      x * x
-      +
-      y * y
-      +
-      z * z
-
-    );
-
-
-  /*
-  ==========================================================
-    去掉重力
-
-    静止时约 9.81。
-  ==========================================================
-  */
-
-  const movement =
-
-    Math.abs(
-
-      magnitude
-      -
-      9.81
-
-    );
-
-
-  /*
-  ==========================================================
-    Motion energy
-  ==========================================================
-  */
-
-  const energy =
-
-    clamp(
-
-      movement
-      *
-      MOTION_SENSITIVITY,
-
-      0,
-      1
-
-    );
-
-
-  motionBoost +=
-
-    (
-      energy
-      -
-      motionBoost
-    )
-
-    *
-    MOTION_SMOOTH;
-
-
-  /*
-  ==========================================================
-    快速摇晃：
-
-    触发扫光
-  ==========================================================
-  */
-
-  if (
-
-    movement
-    >
-    FLASH_THRESHOLD
-
-  ) {
-
-    triggerFlash();
-
-  }
-
-
-  startAnimation();
-
-}
-
-
-/* ============================================================
-   FLASH
-============================================================ */
-
-function triggerFlash() {
-
-
-  const now =
-    performance.now();
-
-
-  /*
-    防止疯狂闪烁
-  */
-
-  if (
-
-    now
-    -
-    lastFlashTime
-    <
-    FLASH_COOLDOWN
-
-  ) {
-
-    return;
-
-  }
-
-
-  lastFlashTime =
-    now;
-
-
-  /*
-  ==========================================================
-    第一层强白光
-  ==========================================================
-  */
-
-  flashAnimation(
-    1.0
-  );
-
-}
-
-
-/* ============================================================
-   FLASH ANIMATION
-============================================================ */
-
-function flashAnimation(
-  strength
-) {
-
-
-  /*
-  如果用户快速晃手机：
-
-  白色高光扫过整张卡。
-  */
-
-  const flashLayer =
-    document.createElement(
-      "div"
-    );
-
-
-  flashLayer.style.position =
-    "absolute";
-
-
-  flashLayer.style.inset =
-    "-45%";
-
-
-  flashLayer.style.pointerEvents =
-    "none";
-
-
-  flashLayer.style.borderRadius =
-    "inherit";
-
-
-  flashLayer.style.mixBlendMode =
-    "screen";
-
-
-  flashLayer.style.background =
-
-    `
-
-    linear-gradient(
-
-      108deg,
-
-      transparent 29%,
-
-
-      rgba(
-        255,
-        255,
-        255,
-        0
-      ) 40%,
-
-
-      rgba(
-        255,
-        255,
-        255,
-        ${0.16 * strength}
-      ) 44%,
-
-
-      rgba(
-        255,
-        255,
-        255,
-        ${0.92 * strength}
-      ) 48.5%,
-
-
-      rgba(
-        255,
-        255,
-        255,
-        ${1.0 * strength}
-      ) 50%,
-
-
-      rgba(
-        225,
-        250,
-        255,
-        ${0.74 * strength}
-      ) 52%,
-
-
-      rgba(
-        255,
-        255,
-        255,
-        ${0.16 * strength}
-      ) 56%,
-
-
-      transparent 66%
-
-    ),
-
-
-    linear-gradient(
-
-      108deg,
-
-      transparent 34%,
-
-
-      rgba(
-        70,
-        220,
-        255,
-        0
-      ) 43%,
-
-
-      rgba(
-        70,
-        220,
-        255,
-        ${0.14 * strength}
-      ) 47%,
-
-
-      rgba(
-        255,
-        130,
-        220,
-        ${0.20 * strength}
-      ) 50%,
-
-
-      rgba(
-        125,
-        155,
-        255,
-        ${0.16 * strength}
-      ) 53%,
-
-
-      transparent 64%
-
-    )
-
-    `;
-
-
-  flashLayer.style.filter =
-
-    "blur(2px) brightness(1.45)";
-
-
-  flashLayer.style.transform =
-
-    "translateX(-135%) skewX(-14deg)";
-
-
-  rotator.appendChild(
-    flashLayer
-  );
-
-
-  /*
-  ==========================================================
-    动画
-  ==========================================================
-  */
-
-  const animation =
-
-    flashLayer.animate(
-
-      [
-
-        {
-
-          opacity:
-            0,
-
-          transform:
-            "translateX(-135%) skewX(-14deg)"
-
-        },
-
-
-        {
-
-          opacity:
-            1,
-
-          transform:
-            "translateX(-42%) skewX(-14deg)"
-
-        },
-
-
-        {
-
-          opacity:
-            0.72,
-
-          transform:
-            "translateX(-2%) skewX(-14deg)"
-
-        },
-
-
-        {
-
-          opacity:
-            0.22,
-
-          transform:
-            "translateX(54%) skewX(-14deg)"
-
-        },
-
-
-        {
-
-          opacity:
-            0,
-
-          transform:
-            "translateX(135%) skewX(-14deg)"
+          await enableSensors();
 
         }
 
-      ],
+      },
 
       {
+        passive:
+          true,
 
-        duration:
-          570,
-
-        easing:
-          "cubic-bezier(.10,.72,.18,1)",
-
-        fill:
-          "forwards"
+        once:
+          true
 
       }
 
     );
 
 
-  /*
-  ==========================================================
-    动画结束后删除
-  ==========================================================
-  */
+    /* ========================================================
+       ENABLE SENSOR
+    ======================================================== */
 
-  animation.finished
-    .then(
-      () => {
+    async function enableSensors() {
 
-        flashLayer.remove();
+
+      /*
+      ========================================================
+        浏览器不支持
+      ========================================================
+      */
+
+      if (
+        !window.DeviceOrientationEvent
+        &&
+        !window.DeviceMotionEvent
+      ) {
+
+        return;
 
       }
-    )
-    .catch(
-      () => {}
-    );
-
-}
 
 
-/* ============================================================
-   ANIMATION
-============================================================ */
+      /*
+      ========================================================
+        iOS / 需要权限的浏览器
+      ========================================================
+      */
 
-function startAnimation() {
+      try {
 
 
-  if (
-    animationFrame ===
-    null
-  ) {
+        const permissions = [];
 
-    animationFrame =
 
-      requestAnimationFrame(
-        animate
+        /*
+        --------------------------------------------------------
+          Orientation permission
+        --------------------------------------------------------
+        */
+
+        if (
+
+          typeof
+          DeviceOrientationEvent
+            .requestPermission
+          ===
+          "function"
+
+        ) {
+
+          permissions.push(
+
+            DeviceOrientationEvent
+              .requestPermission()
+
+          );
+
+        }
+
+
+        /*
+        --------------------------------------------------------
+          Motion permission
+        --------------------------------------------------------
+        */
+
+        if (
+
+          typeof
+          DeviceMotionEvent
+            .requestPermission
+          ===
+          "function"
+
+        ) {
+
+          permissions.push(
+
+            DeviceMotionEvent
+              .requestPermission()
+
+          );
+
+        }
+
+
+        /*
+        --------------------------------------------------------
+          等待权限
+        --------------------------------------------------------
+        */
+
+        const results =
+
+          await Promise.all(
+            permissions
+          );
+
+
+        /*
+        --------------------------------------------------------
+          如果有一个被拒绝
+        --------------------------------------------------------
+        */
+
+        if (
+
+          results.some(
+            result =>
+              result !==
+              "granted"
+          )
+
+        ) {
+
+          /*
+            这里不弹任何文字。
+
+            继续让桌面/触摸模式工作。
+          */
+
+          sensorEnabled =
+            false;
+
+          return;
+
+        }
+
+
+      }
+
+      catch (
+        error
+      ) {
+
+        console.warn(
+          "Sensor permission error:",
+          error
+        );
+
+        return;
+
+      }
+
+
+      /*
+      ==========================================================
+        添加监听
+      ==========================================================
+      */
+
+      window.addEventListener(
+
+        "deviceorientation",
+
+        handleOrientation,
+
+        true
+
       );
 
-  }
 
-}
+      window.addEventListener(
 
+        "devicemotion",
 
-/* ============================================================
-   ANIMATE LOOP
-============================================================ */
+        handleMotion,
 
-function animate() {
+        true
 
-
-  /*
-  ==========================================================
-    Card
-  ==========================================================
-  */
-
-  currentRotateX +=
-
-    (
-      targetRotateX
-      -
-      currentRotateX
-    )
-
-    *
-    ROTATION_SMOOTH;
-
-
-  currentRotateY +=
-
-    (
-      targetRotateY
-      -
-      currentRotateY
-    )
-
-    *
-    ROTATION_SMOOTH;
-
-
-  /*
-  ==========================================================
-    Pointer / light
-  ==========================================================
-  */
-
-  currentPointerX +=
-
-    (
-      targetPointerX
-      -
-      currentPointerX
-    )
-
-    *
-    POINTER_SMOOTH;
-
-
-  currentPointerY +=
-
-    (
-      targetPointerY
-      -
-      currentPointerY
-    )
-
-    *
-    POINTER_SMOOTH;
-
-
-  /*
-  ==========================================================
-    Holo
-  ==========================================================
-  */
-
-  currentIntensity +=
-
-    (
-      targetIntensity
-      -
-      currentIntensity
-    )
-
-    *
-    INTENSITY_SMOOTH;
-
-
-  /*
-  ==========================================================
-    Motion decay
-  ==========================================================
-  */
-
-  motionBoost *=
-    MOTION_DECAY;
-
-
-  /*
-  ==========================================================
-    Apply rotation
-  ==========================================================
-  */
-
-  rotator.style.setProperty(
-
-    "--tilt-left-right",
-
-    `${currentRotateY.toFixed(3)}deg`
-
-  );
-
-
-  rotator.style.setProperty(
-
-    "--tilt-up-down",
-
-    `${currentRotateX.toFixed(3)}deg`
-
-  );
-
-
-  /*
-  ==========================================================
-    Apply pointer
-  ==========================================================
-  */
-
-  rotator.style.setProperty(
-
-    "--pointer-x",
-
-    `${currentPointerX.toFixed(2)}%`
-
-  );
-
-
-  rotator.style.setProperty(
-
-    "--pointer-y",
-
-    `${currentPointerY.toFixed(2)}%`
-
-  );
-
-
-  /*
-  ==========================================================
-    Background
-
-    比 pointer 移动范围稍微大一些。
-  */
-
-  const bgX =
-
-    50
-    +
-
-    (
-      currentPointerX
-      -
-      50
-    )
-    *
-    1.18;
-
-
-  const bgY =
-
-    50
-    +
-
-    (
-      currentPointerY
-      -
-      50
-    )
-    *
-    1.12;
-
-
-  rotator.style.setProperty(
-
-    "--background-x",
-
-    `${clamp(
-      bgX,
-      -10,
-      110
-    ).toFixed(2)}%`
-
-  );
-
-
-  rotator.style.setProperty(
-
-    "--background-y",
-
-    `${clamp(
-      bgY,
-      -10,
-      110
-    ).toFixed(2)}%`
-
-  );
-
-
-  /*
-  ==========================================================
-    Effect
-  ==========================================================
-  */
-
-  rotator.style.setProperty(
-
-    "--effect-intensity",
-
-    currentIntensity.toFixed(3)
-
-  );
-
-
-  /*
-  ==========================================================
-    Motion
-  ==========================================================
-  */
-
-  rotator.style.setProperty(
-
-    "--motion-boost",
-
-    motionBoost.toFixed(3)
-
-  );
-
-
-  /*
-  ==========================================================
-    Continue?
-  ==========================================================
-  */
-
-  const moving =
-
-    Math.abs(
-      targetRotateX
-      -
-      currentRotateX
-    )
-    >
-    0.01
-
-    ||
-
-    Math.abs(
-      targetRotateY
-      -
-      currentRotateY
-    )
-    >
-    0.01
-
-    ||
-
-    Math.abs(
-      targetPointerX
-      -
-      currentPointerX
-    )
-    >
-    0.01
-
-    ||
-
-    Math.abs(
-      targetPointerY
-      -
-      currentPointerY
-    )
-    >
-    0.01
-
-    ||
-
-    Math.abs(
-      targetIntensity
-      -
-      currentIntensity
-    )
-    >
-    0.01
-
-    ||
-
-    motionBoost
-    >
-    0.01;
-
-
-  if (
-    moving
-  ) {
-
-    animationFrame =
-
-      requestAnimationFrame(
-        animate
       );
 
-  }
 
-  else {
-
-    animationFrame =
-      null;
-
-  }
-
-}
+      sensorEnabled =
+        true;
 
 
-/* ============================================================
-   DOUBLE TAP = RECALIBRATE
-============================================================ */
-
-let lastTap =
-  0;
-
-
-card.addEventListener(
-
-  "pointerup",
-
-  () => {
-
-
-    const now =
-      performance.now();
-
-
-    /*
-      双击卡片：
-
-      重新校准。
-    */
-
-    if (
-
-      now
-      -
-      lastTap
-      <
-      350
-
-    ) {
-
-      recalibrate();
+      startAnimation();
 
     }
 
 
-    lastTap =
-      now;
+    /* ========================================================
+       ORIENTATION
+    ======================================================== */
 
-  },
-
-  {
-    passive:
-      true
-  }
-
-);
-
-
-function recalibrate() {
-
-
-  /*
-    下一条 orientation 数据：
-
-    当前姿态 = 中心。
-  */
-
-  baseBeta =
-    null;
-
-
-  baseGamma =
-    null;
-
-}
-
-
-/* ============================================================
-   DESKTOP / TOUCH FALLBACK
-============================================================ */
-
-card.addEventListener(
-
-  "pointermove",
-
-  event => {
-
-
-    /*
-      ★
-
-      只有真的收到陀螺仪数据后，
-      才禁用 pointer fallback。
-    */
-
-    if (
-      hasOrientationData
+    function handleOrientation(
+      event
     ) {
 
-      return;
+
+      let beta =
+        Number(
+          event.beta
+        );
+
+
+      let gamma =
+        Number(
+          event.gamma
+        );
+
+
+      /*
+      ==========================================================
+        数据无效
+      ==========================================================
+      */
+
+      if (
+
+        !Number.isFinite(
+          beta
+        )
+
+        ||
+
+        !Number.isFinite(
+          gamma
+        )
+
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+      ==========================================================
+        第一次姿态：
+
+        作为中心
+      ==========================================================
+      */
+
+      if (
+        baseBeta === null
+        ||
+        baseGamma === null
+      ) {
+
+        baseBeta =
+          beta;
+
+
+        baseGamma =
+          gamma;
+
+
+        orientationReady =
+          true;
+
+      }
+
+
+      /*
+      ==========================================================
+        相对于中心
+      ==========================================================
+      */
+
+      let deltaBeta =
+        beta -
+        baseBeta;
+
+
+      let deltaGamma =
+        gamma -
+        baseGamma;
+
+
+      /*
+      ==========================================================
+        限制
+      ==========================================================
+      */
+
+      deltaBeta =
+        clamp(
+          deltaBeta,
+          -30,
+          30
+        );
+
+
+      deltaGamma =
+        clamp(
+          deltaGamma,
+          -30,
+          30
+        );
+
+
+      /*
+      ==========================================================
+        计算 3D
+
+        左右：
+
+        gamma
+
+        前后：
+
+        beta
+      ==========================================================
+      */
+
+      let rotateY =
+
+        deltaGamma
+        *
+        SENSOR_SCALE;
+
+
+      let rotateX =
+
+        -deltaBeta
+        *
+        SENSOR_SCALE;
+
+
+      /*
+      ==========================================================
+        限制最大旋转
+      ==========================================================
+      */
+
+      rotateX =
+        clamp(
+          rotateX,
+          -MAX_TILT,
+          MAX_TILT
+        );
+
+
+      rotateY =
+        clamp(
+          rotateY,
+          -MAX_TILT,
+          MAX_TILT
+        );
+
+
+      /*
+      ==========================================================
+        转换成光源坐标
+
+        0 ~ 100
+      ==========================================================
+      */
+
+      const pointerX =
+
+        clamp(
+
+          50
+          +
+          (
+            rotateY /
+            MAX_TILT
+          )
+          *
+          50,
+
+          0,
+          100
+
+        );
+
+
+      const pointerY =
+
+        clamp(
+
+          50
+          -
+          (
+            rotateX /
+            MAX_TILT
+          )
+          *
+          50,
+
+          0,
+          100
+
+        );
+
+
+      /*
+      ==========================================================
+        倾斜距离
+
+        越倾斜：
+        Holo 越明显
+      ==========================================================
+      */
+
+      const tiltAmount =
+
+        Math.min(
+
+          1,
+
+          Math.sqrt(
+
+            Math.pow(
+              rotateX /
+              MAX_TILT,
+
+              2
+            )
+
+            +
+
+            Math.pow(
+              rotateY /
+              MAX_TILT,
+
+              2
+            )
+
+          )
+
+        );
+
+
+      /*
+      ==========================================================
+        rotation
+      ==========================================================
+      */
+
+      setSpringTarget(
+
+        rotationSpring,
+
+        {
+
+          x:
+            rotateY,
+
+          y:
+            rotateX
+
+        }
+
+      );
+
+
+      /*
+      ==========================================================
+        holographic background
+      ==========================================================
+      */
+
+      setSpringTarget(
+
+        backgroundSpring,
+
+        {
+
+          x:
+            mapRange(
+              pointerX,
+              0,
+              100,
+              37,
+              63
+            ),
+
+          y:
+            mapRange(
+              pointerY,
+              0,
+              100,
+              33,
+              67
+            )
+
+        }
+
+      );
+
+
+      /*
+      ==========================================================
+        pointer
+      ==========================================================
+      */
+
+      setSpringTarget(
+
+        pointerSpring,
+
+        {
+
+          x:
+            pointerX,
+
+          y:
+            pointerY,
+
+          effectIntensity:
+
+            Math.max(
+
+              tiltAmount,
+
+              0.15
+
+            )
+
+        }
+
+      );
+
+
+      startAnimation();
 
     }
 
 
-    const rect =
-      card.getBoundingClientRect();
+    /* ========================================================
+       DEVICE MOTION
+    ======================================================== */
+
+    function handleMotion(
+      event
+    ) {
 
 
-    const x =
+      /*
+      ==========================================================
+        accelerationIncludingGravity
 
-      clamp(
+        里面包含：
 
-        (
-          event.clientX
-          -
-          rect.left
+        设备实际运动
+        +
+        重力
+
+        我们通过连续帧变化
+        检测“突然移动”。
+      ==========================================================
+      */
+
+      const acc =
+        event.accelerationIncludingGravity;
+
+
+      if (!acc) {
+
+        return;
+
+      }
+
+
+      const x =
+        Number(
+          acc.x
         )
-        /
-        rect.width
-        *
-        100,
-
-        0,
-        100
-
-      );
+        || 0;
 
 
-    const y =
-
-      clamp(
-
-        (
-          event.clientY
-          -
-          rect.top
+      const y =
+        Number(
+          acc.y
         )
-        /
-        rect.height
-        *
-        100,
-
-        0,
-        100
-
-      );
+        || 0;
 
 
-    const centerX =
-      x - 50;
+      const z =
+        Number(
+          acc.z
+        )
+        || 0;
 
 
-    const centerY =
-      y - 50;
+      /*
+      ==========================================================
+        加速度大小
 
+        用 magnitude 检测明显移动
+      ==========================================================
+      */
 
-    /*
-      Rotation
-    */
-
-    targetRotateY =
-
-      -(
-        centerX
-        /
-        3.5
-      );
-
-
-    targetRotateX =
-
-      centerY
-      /
-      3.5;
-
-
-    /*
-      Light
-    */
-
-    targetPointerX =
-      x;
-
-
-    targetPointerY =
-      y;
-
-
-    /*
-      Holo
-    */
-
-    const distance =
-
-      Math.min(
-
-        1,
+      const magnitude =
 
         Math.sqrt(
 
-          Math.pow(
-            centerX /
-            50,
-            2
-          )
-
+          x * x
           +
+          y * y
+          +
+          z * z
 
-          Math.pow(
-            centerY /
-            50,
-            2
+        );
+
+
+      /*
+      ==========================================================
+        从 9.8 附近的重力中减掉基准
+
+        静止：
+
+        ≈ 9.8
+
+        快速运动：
+
+        偏离明显
+      ==========================================================
+      */
+
+      const movement =
+
+        Math.abs(
+
+          magnitude -
+          9.81
+
+        );
+
+
+      /*
+      ==========================================================
+        转换成 0 ~ 1
+      ==========================================================
+      */
+
+      const shakePower =
+
+        clamp(
+
+          movement
+          *
+          SHAKE_MULTIPLIER,
+
+          0,
+          1
+
+        );
+
+
+      /*
+      ==========================================================
+        设置 Spring
+
+        摇晃：
+        0 → 1
+      ==========================================================
+      */
+
+      if (
+        shakePower >
+        0.02
+      ) {
+
+        setSpringTarget(
+
+          shakeSpring,
+
+          {
+
+            value:
+              shakePower
+
+          }
+
+        );
+
+
+        /*
+        ========================================================
+          强烈摇晃：
+
+          触发一次彩光扫描
+        ========================================================
+        */
+
+        if (
+
+          movement >
+          SHAKE_THRESHOLD
+
+        ) {
+
+          triggerFlash();
+
+        }
+
+      }
+
+
+      startAnimation();
+
+    }
+
+
+    /* ========================================================
+       FLASH
+    ======================================================== */
+
+    function triggerFlash() {
+
+
+      const now =
+        performance.now();
+
+
+      /*
+      ==========================================================
+        防止疯狂触发
+
+        最短间隔：
+        260ms
+      ==========================================================
+      */
+
+      if (
+
+        now -
+        lastFlashTime
+        <
+        260
+
+      ) {
+
+        return;
+
+      }
+
+
+      lastFlashTime =
+        now;
+
+
+      /*
+      ==========================================================
+        重新启动 animation
+      ==========================================================
+      */
+
+      flash.classList.remove(
+        "is-flashing"
+      );
+
+
+      /*
+        强制浏览器重新计算
+      */
+
+      void flash.offsetWidth;
+
+
+      flash.classList.add(
+        "is-flashing"
+      );
+
+    }
+
+
+    /* ========================================================
+       TOUCH / MOUSE FALLBACK
+    ======================================================== */
+
+    card.addEventListener(
+
+      "pointermove",
+
+      handlePointerMove
+
+    );
+
+
+    function handlePointerMove(
+      event
+    ) {
+
+
+      /*
+        手机传感器开启以后：
+
+        不再使用手指位置
+      */
+
+      if (
+        sensorEnabled
+      ) {
+
+        return;
+
+      }
+
+
+      const rect =
+        card.getBoundingClientRect();
+
+
+      const x =
+
+        clamp(
+
+          (
+            event.clientX -
+            rect.left
           )
+          /
+          rect.width
+          *
+          100
+
+        );
+
+
+      const y =
+
+        clamp(
+
+          (
+            event.clientY -
+            rect.top
+          )
+          /
+          rect.height
+          *
+          100
+
+        );
+
+
+      const centerX =
+        x - 50;
+
+
+      const centerY =
+        y - 50;
+
+
+      const rotateY =
+
+        -(
+          centerX /
+          3.5
+        );
+
+
+      const rotateX =
+
+        centerY /
+        3.5;
+
+
+      const intensity =
+
+        Math.min(
+
+          1,
+
+          Math.sqrt(
+
+            Math.pow(
+              centerX /
+              50,
+              2
+            )
+
+            +
+
+            Math.pow(
+              centerY /
+              50,
+              2
+            )
+
+          )
+
+        );
+
+
+      springSettings =
+        interactionSettings;
+
+
+      setSpringTarget(
+
+        rotationSpring,
+
+        {
+
+          x:
+            rotateY,
+
+          y:
+            rotateX
+
+        }
+
+      );
+
+
+      setSpringTarget(
+
+        backgroundSpring,
+
+        {
+
+          x:
+            mapRange(
+              x,
+              0,
+              100,
+              37,
+              63
+            ),
+
+          y:
+            mapRange(
+              y,
+              0,
+              100,
+              33,
+              67
+            )
+
+        }
+
+      );
+
+
+      setSpringTarget(
+
+        pointerSpring,
+
+        {
+
+          x,
+
+          y,
+
+          effectIntensity:
+            intensity
+
+        }
+
+      );
+
+
+      startAnimation();
+
+    }
+
+
+    /* ========================================================
+       MOUSE LEAVE
+    ======================================================== */
+
+    card.addEventListener(
+
+      "pointerleave",
+
+      () => {
+
+
+        if (
+          sensorEnabled
+        ) {
+
+          return;
+
+        }
+
+
+        returnToCenter();
+
+      }
+
+    );
+
+
+    /* ========================================================
+       RETURN
+    ======================================================== */
+
+    function returnToCenter() {
+
+
+      springSettings =
+        returnSettings;
+
+
+      setSpringTarget(
+
+        rotationSpring,
+
+        {
+
+          x: 0,
+          y: 0
+
+        }
+
+      );
+
+
+      setSpringTarget(
+
+        backgroundSpring,
+
+        {
+
+          x: 50,
+          y: 50
+
+        }
+
+      );
+
+
+      setSpringTarget(
+
+        pointerSpring,
+
+        {
+
+          x: 50,
+          y: 50,
+
+          effectIntensity:
+            0
+
+        }
+
+      );
+
+
+      startAnimation();
+
+    }
+
+
+    /* ========================================================
+       ANIMATION START
+    ======================================================== */
+
+    function startAnimation() {
+
+      if (
+        animationFrame ===
+        null
+      ) {
+
+        animationFrame =
+
+          requestAnimationFrame(
+            animate
+          );
+
+      }
+
+    }
+
+
+    /* ========================================================
+       ANIMATION
+    ======================================================== */
+
+    function animate(
+      timestamp
+    ) {
+
+
+      if (
+        !lastTimestamp
+      ) {
+
+        lastTimestamp =
+          timestamp;
+
+      }
+
+
+      const deltaTime =
+
+        Math.min(
+
+          (
+            timestamp -
+            lastTimestamp
+          )
+          /
+          16.666,
+
+          4
+
+        );
+
+
+      lastTimestamp =
+        timestamp;
+
+
+      /*
+      ==========================================================
+        Rotation
+      ==========================================================
+      */
+
+      updateSpring(
+
+        rotationSpring,
+
+        deltaTime
+
+      );
+
+
+      /*
+      ==========================================================
+        Background
+      ==========================================================
+      */
+
+      updateSpring(
+
+        backgroundSpring,
+
+        deltaTime
+
+      );
+
+
+      /*
+      ==========================================================
+        Pointer
+      ==========================================================
+      */
+
+      updateSpring(
+
+        pointerSpring,
+
+        deltaTime
+
+      );
+
+
+      /*
+      ==========================================================
+        Shake
+
+        摇晃后的能量自然衰减
+      ==========================================================
+      */
+
+      springSettings =
+        shakeSettings;
+
+
+      updateSpring(
+
+        shakeSpring,
+
+        deltaTime
+
+      );
+
+
+      /*
+      ==========================================================
+        Apply
+      ==========================================================
+      */
+
+      applyVisualState();
+
+
+      /*
+      ==========================================================
+        stop?
+      ==========================================================
+      */
+
+      if (
+
+        springs.every(
+          isCloseToTarget
+        )
+
+      ) {
+
+
+        springs.forEach(
+          finishSpringAtTarget
+        );
+
+
+        applyVisualState();
+
+
+        animationFrame =
+          null;
+
+
+        lastTimestamp =
+          0;
+
+
+        return;
+
+      }
+
+
+      /*
+      ==========================================================
+        Next frame
+      ==========================================================
+      */
+
+      animationFrame =
+
+        requestAnimationFrame(
+          animate
+        );
+
+    }
+
+
+    /* ========================================================
+       APPLY VISUAL STATE
+    ======================================================== */
+
+    function applyVisualState() {
+
+
+      /*
+      ==========================================================
+        Tilt
+      ==========================================================
+      */
+
+      rotator.style.setProperty(
+
+        "--tilt-left-right",
+
+        `${
+          round(
+            rotationSpring
+              .current
+              .x
+          )
+        }deg`
+
+      );
+
+
+      rotator.style.setProperty(
+
+        "--tilt-up-down",
+
+        `${
+          round(
+            rotationSpring
+              .current
+              .y
+          )
+        }deg`
+
+      );
+
+
+      /*
+      ==========================================================
+        Background
+      ==========================================================
+      */
+
+      rotator.style.setProperty(
+
+        "--background-x",
+
+        `${
+          round(
+            backgroundSpring
+              .current
+              .x
+          )
+        }%`
+
+      );
+
+
+      rotator.style.setProperty(
+
+        "--background-y",
+
+        `${
+          round(
+            backgroundSpring
+              .current
+              .y
+          )
+        }%`
+
+      );
+
+
+      /*
+      ==========================================================
+        Pointer
+      ==========================================================
+      */
+
+      const x =
+
+        round(
+          pointerSpring
+            .current
+            .x
+        );
+
+
+      const y =
+
+        round(
+          pointerSpring
+            .current
+            .y
+        );
+
+
+      const distance =
+
+        getPointerDistanceFromCenter(
+          x,
+          y
+        );
+
+
+      rotator.style.setProperty(
+
+        "--pointer-x",
+
+        `${x}%`
+
+      );
+
+
+      rotator.style.setProperty(
+
+        "--pointer-y",
+
+        `${y}%`
+
+      );
+
+
+      rotator.style.setProperty(
+
+        "--pointer-from-center",
+
+        distance
+
+      );
+
+
+      rotator.style.setProperty(
+
+        "--effect-intensity",
+
+        round(
+
+          pointerSpring
+            .current
+            .effectIntensity
 
         )
 
       );
 
 
-    targetIntensity =
+      /*
+      ==========================================================
+        Shake
+      ==========================================================
+      */
 
-      0.15
-      +
-      distance
-      *
-      0.85;
+      rotator.style.setProperty(
 
+        "--shake-boost",
 
-    startAnimation();
+        round(
 
-  }
+          shakeSpring
+            .current
+            .value
 
-);
+        )
 
-
-/* ============================================================
-   POINTER LEAVE
-============================================================ */
-
-card.addEventListener(
-
-  "pointerleave",
-
-  () => {
-
-
-    /*
-      手机陀螺仪模式：
-
-      不重置。
-    */
-
-    if (
-      hasOrientationData
-    ) {
-
-      return;
+      );
 
     }
 
 
-    targetRotateX =
-      0;
+    /* ========================================================
+       POINTER DISTANCE
+    ======================================================== */
+
+    function getPointerDistanceFromCenter(
+      x,
+      y
+    ) {
+
+      const distance =
+
+        Math.hypot(
+
+          x - 50,
+
+          y - 50
+
+        )
+        /
+        50;
 
 
-    targetRotateY =
-      0;
+      return round(
+
+        clamp(
+
+          distance,
+
+          0,
+          1
+
+        )
+
+      );
+
+    }
 
 
-    targetPointerX =
-      50;
+    /* ========================================================
+       SPRING
+    ======================================================== */
+
+    function createSpring(
+      initial
+    ) {
 
 
-    targetPointerY =
-      50;
+      const axes =
+        Object.keys(
+          initial
+        );
 
 
-    targetIntensity =
-      0;
+      return {
+
+        axes,
 
 
-    startAnimation();
-
-  }
-
-);
-
-
-/* ============================================================
-   INITIAL
-============================================================ */
-
-rotator.style.setProperty(
-  "--tilt-left-right",
-  "0deg"
-);
+        current:
+          {
+            ...initial
+          },
 
 
-rotator.style.setProperty(
-  "--tilt-up-down",
-  "0deg"
-);
+        target:
+          {
+            ...initial
+          },
 
 
-rotator.style.setProperty(
-  "--pointer-x",
-  "50%"
-);
+        velocity:
+
+          Object.fromEntries(
+
+            axes.map(
+
+              axis => [
+
+                axis,
+
+                0
+
+              ]
+
+            )
+
+          )
+
+      };
+
+    }
 
 
-rotator.style.setProperty(
-  "--pointer-y",
-  "50%"
-);
+    /* ========================================================
+       SET TARGET
+    ======================================================== */
+
+    function setSpringTarget(
+      spring,
+      target
+    ) {
+
+      Object.assign(
+
+        spring.target,
+
+        target
+
+      );
+
+    }
 
 
-rotator.style.setProperty(
-  "--background-x",
-  "50%"
-);
+    /* ========================================================
+       UPDATE SPRING
+    ======================================================== */
+
+    function updateSpring(
+      spring,
+      deltaTime
+    ) {
 
 
-rotator.style.setProperty(
-  "--background-y",
-  "50%"
-);
+      spring.axes.forEach(
+
+        axis => {
 
 
-rotator.style.setProperty(
-  "--effect-intensity",
-  "0"
-);
+          const distance =
+
+            spring.target[axis]
+
+            -
+
+            spring.current[axis];
 
 
-rotator.style.setProperty(
-  "--motion-boost",
-  "0"
-);
+          /*
+          ------------------------------------------------------
+            加速度
+          ------------------------------------------------------
+          */
+
+          spring.velocity[axis] +=
+
+            distance
+
+            *
+
+            springSettings.stiffness
+
+            *
+
+            deltaTime;
 
 
-/*
-  启动渲染
-*/
+          /*
+          ------------------------------------------------------
+            阻尼
+          ------------------------------------------------------
+          */
 
-startAnimation();
+          spring.velocity[axis] *=
 
-</script>
+            Math.pow(
+
+              1 -
+
+              springSettings.damping,
+
+              deltaTime
+
+            );
+
+
+          /*
+          ------------------------------------------------------
+            Position
+          ------------------------------------------------------
+          */
+
+          spring.current[axis] +=
+
+            spring.velocity[axis]
+
+            *
+
+            deltaTime;
+
+        }
+
+      );
+
+    }
+
+
+    /* ========================================================
+       STOP
+    ======================================================== */
+
+    const STOP_THRESHOLD =
+      0.001;
+
+
+    function isCloseToTarget(
+      spring
+    ) {
+
+      return spring.axes.every(
+
+        axis => {
+
+
+          const distance =
+
+            Math.abs(
+
+              spring.target[axis]
+
+              -
+
+              spring.current[axis]
+
+            );
+
+
+          const speed =
+
+            Math.abs(
+
+              spring.velocity[axis]
+
+            );
+
+
+          return (
+
+            distance
+            <
+            STOP_THRESHOLD
+
+            &&
+
+            speed
+            <
+            STOP_THRESHOLD
+
+          );
+
+        }
+
+      );
+
+    }
+
+
+    /* ========================================================
+       FINISH
+    ======================================================== */
+
+    function finishSpringAtTarget(
+      spring
+    ) {
+
+
+      spring.current =
+
+        {
+          ...spring.target
+        };
+
+
+      spring.axes.forEach(
+
+        axis => {
+
+          spring.velocity[axis] =
+            0;
+
+        }
+
+      );
+
+    }
+
+
+    /* ========================================================
+       UTILS
+    ======================================================== */
+
+    function clamp(
+      value,
+      min = 0,
+      max = 100
+    ) {
+
+      return Math.min(
+
+        Math.max(
+          value,
+          min
+        ),
+
+        max
+
+      );
+
+    }
+
+
+    function mapRange(
+      value,
+      fromMin,
+      fromMax,
+      toMin,
+      toMax
+    ) {
+
+      const progress =
+
+        (
+          value -
+          fromMin
+        )
+
+        /
+
+        (
+          fromMax -
+          fromMin
+        );
+
+
+      return (
+
+        toMin
+
+        +
+
+        progress
+
+        *
+
+        (
+          toMax -
+          toMin
+        )
+
+      );
+
+    }
+
+
+    function round(
+      value,
+      precision = 3
+    ) {
+
+      return Number(
+
+        value.toFixed(
+          precision
+        )
+
+      );
+
+    }
+
+  </script>
 
 </body>
 
