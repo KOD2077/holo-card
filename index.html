@@ -1,6 +1,7 @@
 ```html
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 
 <meta charset="UTF-8">
@@ -37,15 +38,19 @@
 
 html,
 body {
+
   width: 100%;
   height: 100%;
+
   margin: 0;
   padding: 0;
+
 }
 
 body {
 
   background:
+
     radial-gradient(
       circle at 50% 42%,
       #191b21 0%,
@@ -53,21 +58,39 @@ body {
       #07080a 100%
     );
 
-  display: grid;
-  place-items: center;
 
-  overflow: hidden;
+  display:
+    grid;
 
-  touch-action: none;
+  place-items:
+    center;
 
-  user-select: none;
-  -webkit-user-select: none;
+
+  overflow:
+    hidden;
+
+
+  touch-action:
+    none;
+
+
+  user-select:
+    none;
+
+  -webkit-user-select:
+    none;
+
 
   padding:
+
     env(safe-area-inset-top)
+
     env(safe-area-inset-right)
+
     env(safe-area-inset-bottom)
+
     env(safe-area-inset-left);
+
 }
 
 
@@ -83,31 +106,30 @@ body {
       360px
     );
 
+
   aspect-ratio:
     0.718;
 
+
   perspective:
-    850px;
+    820px;
+
 
   touch-action:
     none;
 
+
   user-select:
     none;
+
 }
 
 
 /* =========================================================
-   ROTATOR
+   CARD ROTATOR
 ========================================================= */
 
 .card__rotator {
-
-  /*
-  ----------------------------------------------------------
-    3D
-  ----------------------------------------------------------
-  */
 
   --rotate-x:
     0deg;
@@ -115,12 +137,6 @@ body {
   --rotate-y:
     0deg;
 
-
-  /*
-  ----------------------------------------------------------
-    Light
-  ----------------------------------------------------------
-  */
 
   --light-x:
     50%;
@@ -136,21 +152,9 @@ body {
     50%;
 
 
-  /*
-  ----------------------------------------------------------
-    Holo
-  ----------------------------------------------------------
-  */
-
   --holo:
     0.18;
 
-
-  /*
-  ----------------------------------------------------------
-    Motion
-  ----------------------------------------------------------
-  */
 
   --motion:
     0;
@@ -159,17 +163,20 @@ body {
   position:
     relative;
 
+
   width:
     100%;
 
   height:
     100%;
 
-  border-radius:
-    4.55% / 3.5%;
 
   overflow:
     hidden;
+
+
+  border-radius:
+    4.55% / 3.5%;
 
 
   transform:
@@ -186,24 +193,19 @@ body {
   transform-origin:
     center;
 
+
   will-change:
     transform;
 
 
-  /*
-  ----------------------------------------------------------
-    Shadow
-  ----------------------------------------------------------
-  */
-
   box-shadow:
 
-    0 28px 68px
+    0 30px 70px
       rgba(
         0,
         0,
         0,
-        0.52
+        0.54
       ),
 
     0 8px 24px
@@ -211,14 +213,14 @@ body {
         0,
         0,
         0,
-        0.36
+        0.38
       );
 
 }
 
 
 /* =========================================================
-   IMAGE
+   CARD IMAGE
 ========================================================= */
 
 .card__image {
@@ -226,8 +228,10 @@ body {
   position:
     absolute;
 
+
   inset:
     0;
+
 
   width:
     100%;
@@ -235,37 +239,35 @@ body {
   height:
     100%;
 
+
   display:
     block;
+
 
   object-fit:
     cover;
 
+
   border-radius:
     inherit;
+
 
   pointer-events:
     none;
 
+
   user-select:
     none;
 
+
   -webkit-user-drag:
     none;
+
 }
 
 
 /* =========================================================
-   CONTINUOUS HOLOGRAPHIC SPECTRUM
-
-   核心全息色层。
-
-   完全由 CSS 生成。
-   
-   不使用图片。
-   
-   不使用 repeating-linear-gradient，
-   所以不会出现明显彩虹硬条。
+   CONTINUOUS SPECTRUM
 ========================================================= */
 
 .card__spectrum {
@@ -273,8 +275,9 @@ body {
   position:
     absolute;
 
+
   inset:
-    -15%;
+    -14%;
 
 
   border-radius:
@@ -288,85 +291,79 @@ body {
       from 205deg
 
       at
-
       var(--light-x)
       var(--light-y),
 
 
       rgba(
         255,
-        91,
-        126,
-        0.28
-      ),
-
-      rgba(
-        255,
-        184,
-        82,
-        0.30
-      ),
-
-      rgba(
-        221,
-        255,
-        118,
+        90,
+        125,
         0.25
       ),
 
       rgba(
-        90,
-        240,
-        203,
+        255,
+        192,
+        80,
+        0.28
+      ),
+
+      rgba(
+        220,
+        255,
+        115,
+        0.23
+      ),
+
+      rgba(
+        75,
+        235,
+        204,
+        0.25
+      ),
+
+      rgba(
+        74,
+        199,
+        255,
+        0.28
+      ),
+
+      rgba(
+        120,
+        135,
+        255,
+        0.26
+      ),
+
+      rgba(
+        205,
+        105,
+        255,
         0.27
-      ),
-
-      rgba(
-        79,
-        202,
-        255,
-        0.30
-      ),
-
-      rgba(
-        118,
-        139,
-        255,
-        0.28
-      ),
-
-      rgba(
-        196,
-        103,
-        255,
-        0.28
       ),
 
       rgba(
         255,
         105,
         177,
-        0.25
+        0.23
       ),
 
       rgba(
         255,
-        91,
-        126,
-        0.28
+        90,
+        125,
+        0.25
       )
 
     );
 
 
-  /*
-    非常大幅的缩放。
-
-    颜色变化因此非常缓慢。
-  */
-
   background-size:
-    190% 190%;
+    185%
+    185%;
 
 
   background-position:
@@ -374,12 +371,6 @@ body {
     var(--light-x2)
     var(--light-y2);
 
-
-  /*
-    使用 soft-light。
-
-    不会把原图完全染色。
-  */
 
   mix-blend-mode:
     soft-light;
@@ -389,13 +380,13 @@ body {
 
     calc(
 
-      0.16
+      0.15
 
       +
 
       var(--holo)
       *
-      0.47
+      0.48
 
       +
 
@@ -421,22 +412,19 @@ body {
 
   pointer-events:
     none;
+
 }
 
 
 /* =========================================================
-   LARGE SOFT SPECTRUM
-
-   第二层：
-   更宽、更柔和。
-
-   用来填补颜色之间的空隙。
+   SOFT COLOR FIELD
 ========================================================= */
 
 .card__spectrum-soft {
 
   position:
     absolute;
+
 
   inset:
     -20%;
@@ -460,54 +448,54 @@ body {
         255,
         255,
         255,
-        0.38
+        0.42
       )
 
       0%,
 
 
       rgba(
-        140,
+        145,
         255,
-        244,
-        0.22
+        245,
+        0.25
       )
 
-      18%,
+      20%,
 
 
       rgba(
-        103,
-        202,
+        105,
+        203,
         255,
-        0.13
+        0.16
       )
 
-      35%,
+      36%,
 
 
       rgba(
-        189,
+        185,
         120,
         255,
         0.11
       )
 
-      51%,
+      52%,
 
 
       rgba(
         255,
-        130,
-        191,
+        125,
+        190,
         0.08
       )
 
-      64%,
+      65%,
 
 
       transparent
-      80%
+      82%
 
     );
 
@@ -522,13 +510,13 @@ body {
 
       var(--holo)
       *
-      0.55
+      0.58
 
       +
 
       var(--motion)
       *
-      0.22
+      0.28
 
     );
 
@@ -536,39 +524,39 @@ body {
   filter:
 
     blur(
-      13px
+      12px
     )
 
     saturate(
-      1.12
+      1.15
+    )
+
+    brightness(
+      1.08
     );
 
 
   transform:
     scale(
-      1.12
+      1.10
     );
 
 
   pointer-events:
     none;
+
 }
 
 
 /* =========================================================
-   MICRO GRAIN
-
-   纯 CSS 微细纹理。
-
-   不用图片。
-
-   极低对比度，避免“脏”。
+   CSS GRAIN
 ========================================================= */
 
 .card__grain {
 
   position:
     absolute;
+
 
   inset:
     0;
@@ -577,33 +565,33 @@ body {
   background-image:
 
     radial-gradient(
-      circle at 20% 20%,
+      circle at 18% 22%,
       rgba(
         255,
         255,
         255,
-        0.18
+        0.17
       )
-      0.35px,
+      0.32px,
       transparent
-      0.7px
+      0.70px
     ),
 
     radial-gradient(
-      circle at 80% 30%,
+      circle at 80% 32%,
       rgba(
         255,
         255,
         255,
-        0.14
+        0.13
       )
-      0.28px,
+      0.30px,
       transparent
-      0.65px
+      0.70px
     ),
 
     radial-gradient(
-      circle at 32% 78%,
+      circle at 35% 76%,
       rgba(
         255,
         255,
@@ -612,7 +600,7 @@ body {
       )
       0.30px,
       transparent
-      0.65px
+      0.68px
     );
 
 
@@ -633,13 +621,13 @@ body {
 
     calc(
 
-      0.05
+      0.035
 
       +
 
       var(--holo)
       *
-      0.07
+      0.075
 
       +
 
@@ -652,21 +640,19 @@ body {
 
   pointer-events:
     none;
+
 }
 
 
 /* =========================================================
-   MICRO LINE TEXTURE
-
-   非常细的方向性纹理。
-
-   增加金属膜感觉。
+   FINE LINES
 ========================================================= */
 
 .card__lines {
 
   position:
     absolute;
+
 
   inset:
     -10%;
@@ -676,7 +662,7 @@ body {
 
     repeating-linear-gradient(
 
-      118deg,
+      117deg,
 
       rgba(
         255,
@@ -687,6 +673,7 @@ body {
 
       0px,
 
+
       rgba(
         255,
         255,
@@ -696,14 +683,16 @@ body {
 
       2px,
 
+
       rgba(
         255,
         255,
         255,
-        0.025
+        0.028
       )
 
       2.7px,
+
 
       rgba(
         255,
@@ -712,13 +701,14 @@ body {
         0
       )
 
-      3.6px
+      3.7px
 
     );
 
 
   background-size:
-    140% 140%;
+    140%
+    140%;
 
 
   background-position:
@@ -735,40 +725,37 @@ body {
 
     calc(
 
-      0.22
+      0.15
 
       +
 
       var(--holo)
       *
-      0.16
+      0.17
 
       +
 
       var(--motion)
       *
-      0.14
+      0.16
 
     );
 
 
   filter:
     blur(
-      0.25px
+      0.2px
     );
 
 
   pointer-events:
     none;
+
 }
 
 
 /* =========================================================
-   METALLIC IRIDESCENT FIELD
-
-   非常宽的低强度颜色层。
-
-   防止颜色只有一块一块。
+   IRIDESCENCE
 ========================================================= */
 
 .card__iridescence {
@@ -776,21 +763,22 @@ body {
   position:
     absolute;
 
+
   inset:
-    -15%;
+    -16%;
 
 
   background:
 
     linear-gradient(
 
-      104deg,
+      103deg,
 
       rgba(
         255,
-        110,
+        105,
         160,
-        0.08
+        0.07
       )
 
       0%,
@@ -798,16 +786,16 @@ body {
 
       rgba(
         255,
-        220,
+        222,
         115,
-        0.10
+        0.09
       )
 
       20%,
 
 
       rgba(
-        120,
+        115,
         255,
         205,
         0.10
@@ -817,40 +805,40 @@ body {
 
 
       rgba(
-        115,
-        218,
+        105,
+        220,
         255,
-        0.12
+        0.11
       )
 
-      55%,
+      56%,
 
 
       rgba(
-        125,
-        140,
+        130,
+        145,
         255,
         0.10
       )
 
-      72%,
+      73%,
 
 
       rgba(
-        235,
-        115,
+        232,
+        110,
         255,
         0.08
       )
 
-      88%,
+      89%,
 
 
       rgba(
         255,
-        115,
-        164,
-        0.08
+        110,
+        165,
+        0.07
       )
 
       100%
@@ -859,7 +847,8 @@ body {
 
 
   background-size:
-    250% 250%;
+    255%
+    255%;
 
 
   background-position:
@@ -878,13 +867,13 @@ body {
 
       var(--holo)
       *
-      0.45
+      0.46
 
       +
 
       var(--motion)
       *
-      0.18
+      0.20
 
     );
 
@@ -896,25 +885,25 @@ body {
     )
 
     saturate(
-      1.15
+      1.18
     );
 
 
   pointer-events:
     none;
+
 }
 
 
 /* =========================================================
-   LARGE SPECULAR
-
-   ★ 闪卡主要高光
+   BIG SPECULAR
 ========================================================= */
 
 .card__specular {
 
   position:
     absolute;
+
 
   inset:
     0;
@@ -925,7 +914,7 @@ body {
     radial-gradient(
 
       ellipse
-      62%
+      63%
       50%
 
       at
@@ -938,7 +927,7 @@ body {
         255,
         255,
         255,
-        0.90
+        0.92
       )
 
       0%,
@@ -948,20 +937,20 @@ body {
         255,
         255,
         255,
-        0.47
+        0.48
       )
 
-      17%,
+      16%,
 
 
       rgba(
         255,
         255,
         255,
-        0.19
+        0.20
       )
 
-      33%,
+      32%,
 
 
       rgba(
@@ -971,7 +960,7 @@ body {
         0.06
       )
 
-      46%,
+      48%,
 
 
       transparent
@@ -992,19 +981,19 @@ body {
 
       calc(
 
-        0.10
+        0.08
 
         +
 
         var(--holo)
         *
-        0.34
+        0.36
 
         +
 
         var(--motion)
         *
-        0.62
+        0.65
 
       )
 
@@ -1018,19 +1007,18 @@ body {
     )
 
     brightness(
-      1.22
+      1.20
     );
 
 
   pointer-events:
     none;
+
 }
 
 
 /* =========================================================
-   SOFT WHITE BAND
-
-   倾斜时出现非常宽的反射面。
+   REFLECTION BAND
 ========================================================= */
 
 .card__reflection {
@@ -1038,8 +1026,9 @@ body {
   position:
     absolute;
 
+
   inset:
-    -75%;
+    -76%;
 
 
   background:
@@ -1048,14 +1037,15 @@ body {
 
       112deg,
 
-      transparent 39%,
+      transparent
+      38%,
 
 
       rgba(
         255,
         255,
         255,
-        0.00
+        0
       )
       43%,
 
@@ -1073,7 +1063,7 @@ body {
         255,
         255,
         255,
-        0.30
+        0.35
       )
       49%,
 
@@ -1082,16 +1072,16 @@ body {
         255,
         255,
         255,
-        0.58
+        0.74
       )
       50%,
 
 
       rgba(
-        235,
+        225,
         255,
         255,
-        0.28
+        0.34
       )
       52%,
 
@@ -1100,12 +1090,13 @@ body {
         255,
         255,
         255,
-        0.06
+        0.07
       )
-      55%,
+      56%,
 
 
-      transparent 60%
+      transparent
+      61%
 
     );
 
@@ -1124,7 +1115,7 @@ body {
 
         *
 
-        1.35
+        1.4
 
       )
 
@@ -1142,7 +1133,7 @@ body {
 
         *
 
-        0.85
+        0.9
 
       )
 
@@ -1163,13 +1154,13 @@ body {
 
       var(--holo)
       *
-      0.14
+      0.15
 
       +
 
       var(--motion)
       *
-      0.78
+      0.92
 
     );
 
@@ -1177,23 +1168,22 @@ body {
   filter:
 
     blur(
-      6px
+      5px
     )
 
     brightness(
-      1.28
+      1.30
     );
 
 
   pointer-events:
     none;
+
 }
 
 
 /* =========================================================
-   COLOR EDGE REFLECTION
-
-   不是彩虹条，只是给白色高光增加一点色边。
+   COLORED REFLECTION EDGE
 ========================================================= */
 
 .card__color-reflection {
@@ -1201,8 +1191,9 @@ body {
   position:
     absolute;
 
+
   inset:
-    -75%;
+    -76%;
 
 
   background:
@@ -1211,23 +1202,24 @@ body {
 
       111deg,
 
-      transparent 39%,
+      transparent
+      38%,
 
 
       rgba(
-        80,
-        225,
+        60,
+        220,
         255,
         0
       )
-      44%,
+      43%,
 
 
       rgba(
-        80,
-        225,
+        60,
+        220,
         255,
-        0.14
+        0.15
       )
       47%,
 
@@ -1236,21 +1228,22 @@ body {
         255,
         130,
         220,
-        0.20
+        0.22
       )
       50%,
 
 
       rgba(
-        130,
-        150,
+        125,
+        155,
         255,
-        0.16
+        0.18
       )
       53%,
 
 
-      transparent 61%
+      transparent
+      62%
 
     );
 
@@ -1269,7 +1262,7 @@ body {
 
         *
 
-        1.48
+        1.52
 
       )
 
@@ -1304,26 +1297,26 @@ body {
 
       var(--holo)
       *
-      0.12
+      0.10
 
       +
 
       var(--motion)
       *
-      0.54
+      0.58
 
     );
 
 
   filter:
-
     blur(
-      8px
+      7px
     );
 
 
   pointer-events:
     none;
+
 }
 
 
@@ -1335,6 +1328,7 @@ body {
 
   position:
     absolute;
+
 
   inset:
     0;
@@ -1361,6 +1355,7 @@ body {
 
   pointer-events:
     none;
+
 }
 
 
@@ -1372,6 +1367,7 @@ body {
 
   position:
     absolute;
+
 
   inset:
     0;
@@ -1393,7 +1389,7 @@ body {
         0,
         0.04
       )
-      70%,
+      72%,
 
 
       rgba(
@@ -1413,6 +1409,7 @@ body {
 
   pointer-events:
     none;
+
 }
 
 
@@ -1450,90 +1447,72 @@ body {
 
 
     <!-- ======================================================
-         CARD IMAGE
+         ★★★ 你的图片 ★★★
 
-         ★★★★★★★★★★★★★★★★★★★★★★★★★★
-
-         只需要替换：
-
-         card.png
-
-         就可以换卡片。
+         只需要替换 card.png
     ======================================================= -->
 
     <img
-
       class="card__image"
-
       src="./card.png"
-
       alt=""
-
       draggable="false"
-
     >
 
 
-    <!-- ======================================================
-         CSS HOLOGRAPHIC LAYERS
-    ======================================================= -->
+    <!-- 全息层 -->
 
-
-    <!-- 连续光谱 -->
     <div
       class="card__spectrum"
     ></div>
 
 
-    <!-- 柔和色散 -->
     <div
       class="card__spectrum-soft"
     ></div>
 
 
-    <!-- 彩色泛光 -->
     <div
       class="card__iridescence"
     ></div>
 
 
-    <!-- 微颗粒 -->
+    <!-- 微纹理 -->
+
     <div
       class="card__grain"
     ></div>
 
 
-    <!-- 微细方向纹 -->
     <div
       class="card__lines"
     ></div>
 
 
-    <!-- 大面积镜面高光 -->
+    <!-- 高光 -->
+
     <div
       class="card__specular"
     ></div>
 
 
-    <!-- 宽反射带 -->
     <div
       class="card__reflection"
     ></div>
 
 
-    <!-- 彩色反射边缘 -->
     <div
       class="card__color-reflection"
     ></div>
 
 
-    <!-- 卡片边缘 -->
+    <!-- 边缘 -->
+
     <div
       class="card__edge"
     ></div>
 
 
-    <!-- 边缘压暗 -->
     <div
       class="card__vignette"
     ></div>
@@ -1566,56 +1545,49 @@ const rotator =
    STATE
 ============================================================ */
 
+
 /*
-  当前旋转
+  当前卡片旋转
 */
 
-const current = {
+let currentX =
+  0;
 
-  x: 0,
-
-  y: 0
-
-};
+let currentY =
+  0;
 
 
 /*
   目标旋转
 */
 
-const target = {
+let targetX =
+  0;
 
-  x: 0,
-
-  y: 0
-
-};
+let targetY =
+  0;
 
 
 /*
   当前光源
 */
 
-const light = {
+let lightX =
+  50;
 
-  x: 50,
-
-  y: 50
-
-};
+let lightY =
+  50;
 
 
 /*
   目标光源
 */
 
-const targetLight = {
+let targetLightX =
+  50;
 
-  x: 50,
-
-  y: 50
-
-};
+let targetLightY =
+  50;
 
 
 /*
@@ -1625,16 +1597,15 @@ const targetLight = {
 let holo =
   0.18;
 
-
 let targetHolo =
   0.18;
 
 
 /*
-  摇晃能量
+  Motion
 */
 
-let motionEnergy =
+let motion =
   0;
 
 
@@ -1646,41 +1617,67 @@ let animationFrame =
   null;
 
 
-/*
-  上一帧运动
-*/
-
-let previousMotion =
-  0;
-
-
 /* ============================================================
-   SETTINGS
+   SENSOR STATE
 ============================================================ */
 
 
 /*
-==============================================================
-  手机灵敏度
-==============================================================
+  非常重要：
 
-  2.0  → 柔和
-
-  2.8  → 灵敏
-
-  3.1  → 很灵敏
-
-  3.5  → 非常灵敏
+  只有真正收到 orientation 数据，
+  才把它设为 true。
 */
 
-const SENSOR_SENSITIVITY =
-  3.0;
+let orientationWorking =
+  false;
+
+
+let motionWorking =
+  false;
+
+
+let sensorPermissionAsked =
+  false;
 
 
 /*
-==============================================================
-  最大倾斜
-==============================================================
+  当前手机姿态中心
+*/
+
+let baseBeta =
+  null;
+
+
+let baseGamma =
+  null;
+
+
+/* ============================================================
+   SENSOR SETTINGS
+============================================================ */
+
+
+/*
+  ★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+  陀螺仪灵敏度。
+
+  推荐：
+
+  2.5 = 温和
+  3.0 = 灵敏
+  3.5 = 很灵敏
+
+  当前：
+*/
+
+const SENSOR_SENSITIVITY =
+  3.2;
+
+
+/*
+  最大旋转角度。
 */
 
 const MAX_TILT =
@@ -1688,83 +1685,72 @@ const MAX_TILT =
 
 
 /*
-==============================================================
-  卡片追踪速度
-==============================================================
+  卡片追踪速度。
+
+  越大越跟手。
 */
 
-const ORIENTATION_SMOOTH =
-  0.24;
+const ROTATION_SMOOTH =
+  0.28;
 
 
 /*
-==============================================================
-  光源速度
+  光源追踪速度。
 
   比卡片略慢。
-==============================================================
 */
 
 const LIGHT_SMOOTH =
-  0.14;
+  0.18;
 
 
 /*
-==============================================================
-  Holo 变化速度
-==============================================================
+  Holo 变化速度。
 */
 
 const HOLO_SMOOTH =
-  0.13;
+  0.16;
 
 
 /*
-==============================================================
-  Motion smoothing
-==============================================================
-*/
+  摇晃响应。
 
-const MOTION_SMOOTH =
-  0.38;
-
-
-/*
-==============================================================
-  Motion decay
-
-  更高 = 闪光持续更久
-==============================================================
-*/
-
-const MOTION_DECAY =
-  0.958;
-
-
-/*
-==============================================================
-  摇晃灵敏度
-==============================================================
+  越大越容易出现闪光。
 */
 
 const MOTION_SENSITIVITY =
-  0.11;
+  0.12;
 
 
 /*
-==============================================================
-  Flash 阈值
-==============================================================
+  摇晃平滑。
+*/
+
+const MOTION_SMOOTH =
+  0.42;
+
+
+/*
+  摇晃之后的衰减。
+
+  越高：
+  闪光持续越久。
+*/
+
+const MOTION_DECAY =
+  0.955;
+
+
+/*
+  Flash 触发阈值。
 */
 
 const FLASH_THRESHOLD =
-  2.5;
+  2.4;
 
 
 /*
-==============================================================
-  Flash 最小间隔
-==============================================================
+  Flash 最短间隔。
 */
 
 const FLASH_COOLDOWN =
@@ -1776,27 +1762,7 @@ let lastFlash =
 
 
 /* ============================================================
-   SENSOR STATE
-============================================================ */
-
-let baseBeta =
-  null;
-
-
-let baseGamma =
-  null;
-
-
-let sensorEnabled =
-  false;
-
-
-let permissionRequested =
-  false;
-
-
-/* ============================================================
-   FLASH
+   FLASH ELEMENT
 ============================================================ */
 
 const flash =
@@ -1829,14 +1795,6 @@ flash.style.mixBlendMode =
   "screen";
 
 
-/*
-  双层：
-
-  第一层 = 白色镜面
-
-  第二层 = 非常弱的色边
-*/
-
 flash.style.background =
 
   `
@@ -1845,28 +1803,28 @@ flash.style.background =
 
     108deg,
 
-    transparent 26%,
+    transparent 25%,
 
     rgba(
       255,
       255,
       255,
       0
-    ) 37%,
+    ) 36%,
 
     rgba(
       255,
       255,
       255,
-      0.18
-    ) 44%,
+      0.16
+    ) 43%,
 
     rgba(
       255,
       255,
       255,
-      0.95
-    ) 48.5%,
+      0.92
+    ) 48%,
 
     rgba(
       255,
@@ -1886,7 +1844,7 @@ flash.style.background =
       255,
       255,
       255,
-      0.18
+      0.20
     ) 56%,
 
     transparent 67%
@@ -1897,34 +1855,34 @@ flash.style.background =
 
     108deg,
 
-    transparent 33%,
+    transparent 32%,
 
     rgba(
-      50,
+      60,
       220,
       255,
       0
     ) 43%,
 
     rgba(
-      60,
-      220,
+      65,
+      225,
       255,
-      0.20
-    ) 47.5%,
+      0.18
+    ) 47%,
 
     rgba(
       255,
       125,
       220,
-      0.28
+      0.26
     ) 50%,
 
     rgba(
-      130,
-      155,
+      125,
+      150,
       255,
-      0.22
+      0.20
     ) 53%,
 
     transparent 64%
@@ -1935,11 +1893,11 @@ flash.style.background =
 
 
 flash.style.transform =
-  "translateX(-130%) skewX(-14deg)";
+  "translateX(-135%) skewX(-14deg)";
 
 
 flash.style.filter =
-  "blur(2px) brightness(1.4)";
+  "blur(2px) brightness(1.5)";
 
 
 rotator.appendChild(
@@ -1948,8 +1906,18 @@ rotator.appendChild(
 
 
 /* ============================================================
-   ENABLE SENSOR
+   SENSOR PERMISSION
 ============================================================ */
+
+
+/*
+  用户第一次触摸时请求。
+
+  不再使用 once:true。
+
+  这样如果用户第一次拒绝，
+  后面仍可以再次尝试。
+*/
 
 document.addEventListener(
 
@@ -1957,24 +1925,11 @@ document.addEventListener(
 
   () => {
 
-    if (
-      !permissionRequested
-    ) {
-
-      permissionRequested =
-        true;
-
-      enableSensors();
-
-    }
+    enableSensors();
 
   },
 
   {
-
-    once:
-      true,
-
     passive:
       true
 
@@ -1990,6 +1945,25 @@ document.addEventListener(
 async function enableSensors() {
 
 
+  if (
+    sensorPermissionAsked
+    &&
+    (
+      orientationWorking
+      ||
+      motionWorking
+    )
+  ) {
+
+    return;
+
+  }
+
+
+  sensorPermissionAsked =
+    true;
+
+
   /*
   ==========================================================
     ORIENTATION
@@ -1997,12 +1971,24 @@ async function enableSensors() {
   */
 
   if (
-    typeof DeviceOrientationEvent
+    typeof
+    DeviceOrientationEvent
     !==
     "undefined"
   ) {
 
     try {
+
+
+      let granted =
+        true;
+
+
+      /*
+      --------------------------------------------------------
+        iOS Safari
+      --------------------------------------------------------
+      */
 
       if (
 
@@ -2014,33 +2000,29 @@ async function enableSensors() {
 
       ) {
 
-        const permission =
+        const result =
 
           await
           DeviceOrientationEvent
             .requestPermission();
 
 
-        if (
-          permission ===
-          "granted"
-        ) {
-
-          window.addEventListener(
-
-            "deviceorientation",
-
-            handleOrientation,
-
-            true
-
-          );
-
-        }
+        granted =
+          result ===
+          "granted";
 
       }
 
-      else {
+
+      /*
+      --------------------------------------------------------
+        获得许可才监听
+      --------------------------------------------------------
+      */
+
+      if (
+        granted
+      ) {
 
         window.addEventListener(
 
@@ -2061,7 +2043,7 @@ async function enableSensors() {
     ) {
 
       console.warn(
-        "Orientation permission:",
+        "Orientation error:",
         error
       );
 
@@ -2077,12 +2059,24 @@ async function enableSensors() {
   */
 
   if (
-    typeof DeviceMotionEvent
+    typeof
+    DeviceMotionEvent
     !==
     "undefined"
   ) {
 
     try {
+
+
+      let granted =
+        true;
+
+
+      /*
+      --------------------------------------------------------
+        iOS
+      --------------------------------------------------------
+      */
 
       if (
 
@@ -2094,33 +2088,29 @@ async function enableSensors() {
 
       ) {
 
-        const permission =
+        const result =
 
           await
           DeviceMotionEvent
             .requestPermission();
 
 
-        if (
-          permission ===
-          "granted"
-        ) {
-
-          window.addEventListener(
-
-            "devicemotion",
-
-            handleMotion,
-
-            true
-
-          );
-
-        }
+        granted =
+          result ===
+          "granted";
 
       }
 
-      else {
+
+      /*
+      --------------------------------------------------------
+        开启 motion
+      --------------------------------------------------------
+      */
+
+      if (
+        granted
+      ) {
 
         window.addEventListener(
 
@@ -2141,7 +2131,7 @@ async function enableSensors() {
     ) {
 
       console.warn(
-        "Motion permission:",
+        "Motion error:",
         error
       );
 
@@ -2150,17 +2140,13 @@ async function enableSensors() {
   }
 
 
-  sensorEnabled =
-    true;
-
-
   startAnimation();
 
 }
 
 
 /* ============================================================
-   ORIENTATION
+   DEVICE ORIENTATION
 ============================================================ */
 
 function handleOrientation(
@@ -2168,28 +2154,24 @@ function handleOrientation(
 ) {
 
 
-  let beta =
-    Number(
-      event.beta
-    );
+  /*
+  ==========================================================
+    确认确实收到了传感器数据
 
-
-  let gamma =
-    Number(
-      event.gamma
-    );
-
+    ★ 以前版本最大的问题之一
+  ==========================================================
+  */
 
   if (
 
     !Number.isFinite(
-      beta
+      event.beta
     )
 
     ||
 
     !Number.isFinite(
-      gamma
+      event.gamma
     )
 
   ) {
@@ -2201,7 +2183,39 @@ function handleOrientation(
 
   /*
   ==========================================================
-    第一次姿态 = 中心
+    真正收到数据后：
+
+    才认为 sensor 工作。
+  ==========================================================
+  */
+
+  orientationWorking =
+    true;
+
+
+  /*
+  ==========================================================
+    当前数据
+  ==========================================================
+  */
+
+  const beta =
+    Number(
+      event.beta
+    );
+
+
+  const gamma =
+    Number(
+      event.gamma
+    );
+
+
+  /*
+  ==========================================================
+    第一次数据：
+
+    当前手机状态作为中心。
   ==========================================================
   */
 
@@ -2221,20 +2235,24 @@ function handleOrientation(
       gamma;
 
 
-    target.x =
+    targetX =
       0;
 
 
-    target.y =
+    targetY =
       0;
 
 
-    targetLight.x =
+    targetLightX =
       50;
 
 
-    targetLight.y =
+    targetLightY =
       50;
+
+
+    targetHolo =
+      0.20;
 
 
     startAnimation();
@@ -2247,7 +2265,7 @@ function handleOrientation(
 
   /*
   ==========================================================
-    Relative
+    相对角度
   ==========================================================
   */
 
@@ -2265,33 +2283,31 @@ function handleOrientation(
 
   /*
   ==========================================================
-    Limit
+    限制
   ==========================================================
   */
 
   deltaBeta =
     clamp(
       deltaBeta,
-      -32,
-      32
+      -35,
+      35
     );
 
 
   deltaGamma =
     clamp(
       deltaGamma,
-      -32,
-      32
+      -35,
+      35
     );
 
 
   /*
   ==========================================================
-    Non-linear response
+    非线性灵敏度
 
-    小动作非常灵敏。
-
-    大动作逐渐压缩。
+    小动作更明显。
   ==========================================================
   */
 
@@ -2333,13 +2349,13 @@ function handleOrientation(
   ==========================================================
   */
 
-  target.y =
+  targetY =
 
     nx *
     MAX_TILT;
 
 
-  target.x =
+  targetX =
 
     ny *
     MAX_TILT;
@@ -2348,26 +2364,32 @@ function handleOrientation(
   /*
   ==========================================================
     Light
+
+    比卡片运动稍大。
   ==========================================================
   */
 
-  targetLight.x =
+  targetLightX =
 
-    50 +
+    50
+    +
     nx *
-    47;
+    48;
 
 
-  targetLight.y =
+  targetLightY =
 
-    50 -
+    50
+    -
     ny *
-    47;
+    48;
 
 
   /*
   ==========================================================
-    Holo intensity
+    Holo
+
+    即使轻微倾斜也有反光。
   ==========================================================
   */
 
@@ -2390,10 +2412,10 @@ function handleOrientation(
 
   targetHolo =
 
-    0.20
+    0.22
     +
     amount *
-    0.80;
+    0.78;
 
 
   startAnimation();
@@ -2402,7 +2424,7 @@ function handleOrientation(
 
 
 /* ============================================================
-   MOTION
+   DEVICE MOTION
 ============================================================ */
 
 function handleMotion(
@@ -2417,7 +2439,9 @@ function handleMotion(
     event.accelerationIncludingGravity;
 
 
-  if (!acceleration) {
+  if (
+    !acceleration
+  ) {
 
     return;
 
@@ -2445,9 +2469,13 @@ function handleMotion(
     || 0;
 
 
+  motionWorking =
+    true;
+
+
   /*
   ==========================================================
-    Magnitude
+    magnitude
   ==========================================================
   */
 
@@ -2466,7 +2494,9 @@ function handleMotion(
 
   /*
   ==========================================================
-    去除重力基准
+    去掉重力
+
+    静止时约 9.81
   ==========================================================
   */
 
@@ -2474,7 +2504,8 @@ function handleMotion(
 
     Math.abs(
 
-      magnitude -
+      magnitude
+      -
       9.81
 
     );
@@ -2482,7 +2513,7 @@ function handleMotion(
 
   /*
   ==========================================================
-    Energy
+    Motion energy
   ==========================================================
   */
 
@@ -2490,7 +2521,8 @@ function handleMotion(
 
     clamp(
 
-      movement *
+      movement
+      *
       MOTION_SENSITIVITY,
 
       0,
@@ -2499,11 +2531,12 @@ function handleMotion(
     );
 
 
-  motionEnergy +=
+  motion +=
 
     (
-      energy -
-      motionEnergy
+      energy
+      -
+      motion
     )
 
     *
@@ -2512,9 +2545,9 @@ function handleMotion(
 
   /*
   ==========================================================
-    强烈晃动：
+    强烈摇晃：
 
-    产生扫光
+    扫光
   ==========================================================
   */
 
@@ -2528,10 +2561,6 @@ function handleMotion(
     triggerFlash();
 
   }
-
-
-  previousMotion =
-    movement;
 
 
   startAnimation();
@@ -2550,12 +2579,6 @@ function triggerFlash() {
     performance.now();
 
 
-  /*
-  ------------------------------------------------------------
-    cooldown
-  ------------------------------------------------------------
-  */
-
   if (
 
     now -
@@ -2573,12 +2596,6 @@ function triggerFlash() {
   lastFlash =
     now;
 
-
-  /*
-  ------------------------------------------------------------
-    play
-  ------------------------------------------------------------
-  */
 
   flash.animate(
 
@@ -2601,7 +2618,7 @@ function triggerFlash() {
           1,
 
         transform:
-          "translateX(-42%) skewX(-14deg)"
+          "translateX(-40%) skewX(-14deg)"
 
       },
 
@@ -2609,7 +2626,7 @@ function triggerFlash() {
       {
 
         opacity:
-          0.72,
+          0.78,
 
         transform:
           "translateX(-2%) skewX(-14deg)"
@@ -2620,10 +2637,10 @@ function triggerFlash() {
       {
 
         opacity:
-          0.24,
+          0.25,
 
         transform:
-          "translateX(55%) skewX(-14deg)"
+          "translateX(58%) skewX(-14deg)"
 
       },
 
@@ -2643,7 +2660,7 @@ function triggerFlash() {
     {
 
       duration:
-        600,
+        610,
 
       easing:
         "cubic-bezier(.08,.72,.18,1)",
@@ -2659,7 +2676,7 @@ function triggerFlash() {
 
 
 /* ============================================================
-   ANIMATION
+   ANIMATION START
 ============================================================ */
 
 function startAnimation() {
@@ -2682,7 +2699,7 @@ function startAnimation() {
 
 
 /* ============================================================
-   LOOP
+   ANIMATION LOOP
 ============================================================ */
 
 function animate() {
@@ -2690,30 +2707,32 @@ function animate() {
 
   /*
   ==========================================================
-    Card rotation
+    Rotation
+
+    高响应速度
   ==========================================================
   */
 
-  current.x +=
+  currentX +=
 
     (
-      target.x -
-      current.x
+      targetX -
+      currentX
     )
 
     *
-    ORIENTATION_SMOOTH;
+    ROTATION_SMOOTH;
 
 
-  current.y +=
+  currentY +=
 
     (
-      target.y -
-      current.y
+      targetY -
+      currentY
     )
 
     *
-    ORIENTATION_SMOOTH;
+    ROTATION_SMOOTH;
 
 
   /*
@@ -2722,22 +2741,22 @@ function animate() {
   ==========================================================
   */
 
-  light.x +=
+  lightX +=
 
     (
-      targetLight.x -
-      light.x
+      targetLightX -
+      lightX
     )
 
     *
     LIGHT_SMOOTH;
 
 
-  light.y +=
+  lightY +=
 
     (
-      targetLight.y -
-      light.y
+      targetLightY -
+      lightY
     )
 
     *
@@ -2767,13 +2786,13 @@ function animate() {
   ==========================================================
   */
 
-  motionEnergy *=
+  motion *=
     MOTION_DECAY;
 
 
   /*
   ==========================================================
-    CSS variables
+    Apply rotation
   ==========================================================
   */
 
@@ -2781,7 +2800,7 @@ function animate() {
 
     "--rotate-x",
 
-    `${current.x.toFixed(3)}deg`
+    `${currentX.toFixed(3)}deg`
 
   );
 
@@ -2790,16 +2809,22 @@ function animate() {
 
     "--rotate-y",
 
-    `${current.y.toFixed(3)}deg`
+    `${currentY.toFixed(3)}deg`
 
   );
 
+
+  /*
+  ==========================================================
+    Light
+  ==========================================================
+  */
 
   rotator.style.setProperty(
 
     "--light-x",
 
-    `${light.x.toFixed(2)}%`
+    `${lightX.toFixed(2)}%`
 
   );
 
@@ -2808,39 +2833,43 @@ function animate() {
 
     "--light-y",
 
-    `${light.y.toFixed(2)}%`
+    `${lightY.toFixed(2)}%`
 
   );
 
 
   /*
-    第二光源：
+  ==========================================================
+    Secondary light
 
-    比实际光源移动得略远。
+    光略微“拖尾”。
+  ==========================================================
   */
 
-  const lightX2 =
+  const secondaryX =
 
-    50 +
+    50
+    +
 
     (
-      light.x -
+      lightX -
       50
     )
     *
-    1.30;
+    1.32;
 
 
-  const lightY2 =
+  const secondaryY =
 
-    50 +
+    50
+    +
 
     (
-      light.y -
+      lightY -
       50
     )
     *
-    1.15;
+    1.14;
 
 
   rotator.style.setProperty(
@@ -2848,7 +2877,7 @@ function animate() {
     "--light-x2",
 
     `${clamp(
-      lightX2,
+      secondaryX,
       -10,
       110
     ).toFixed(2)}%`
@@ -2861,7 +2890,7 @@ function animate() {
     "--light-y2",
 
     `${clamp(
-      lightY2,
+      secondaryY,
       -10,
       110
     ).toFixed(2)}%`
@@ -2894,22 +2923,22 @@ function animate() {
 
     "--motion",
 
-    motionEnergy.toFixed(3)
+    motion.toFixed(3)
 
   );
 
 
   /*
   ==========================================================
-    Continue?
+    Continue animation
   ==========================================================
   */
 
   const moving =
 
     Math.abs(
-      target.x -
-      current.x
+      targetX -
+      currentX
     )
     >
     0.01
@@ -2917,8 +2946,8 @@ function animate() {
     ||
 
     Math.abs(
-      target.y -
-      current.y
+      targetY -
+      currentY
     )
     >
     0.01
@@ -2926,8 +2955,8 @@ function animate() {
     ||
 
     Math.abs(
-      targetLight.x -
-      light.x
+      targetLightX -
+      lightX
     )
     >
     0.01
@@ -2935,8 +2964,8 @@ function animate() {
     ||
 
     Math.abs(
-      targetLight.y -
-      light.y
+      targetLightY -
+      lightY
     )
     >
     0.01
@@ -2952,12 +2981,14 @@ function animate() {
 
     ||
 
-    motionEnergy
+    motion
     >
     0.01;
 
 
-  if (moving) {
+  if (
+    moving
+  ) {
 
     animationFrame =
 
@@ -3025,10 +3056,9 @@ card.addEventListener(
 
 function recalibrate() {
 
-  /*
-    下一次收到姿态数据：
 
-    当前姿态 = 中心。
+  /*
+    下一帧传感器数据会被当成中心。
   */
 
   baseBeta =
@@ -3042,7 +3072,7 @@ function recalibrate() {
 
 
 /* ============================================================
-   DESKTOP FALLBACK
+   TOUCH / MOUSE FALLBACK
 ============================================================ */
 
 card.addEventListener(
@@ -3053,12 +3083,15 @@ card.addEventListener(
 
 
     /*
-      有手机传感器时：
-      不使用鼠标。
+    ==========================================================
+      如果已经真正检测到陀螺仪：
+
+      手机不再用手指控制。
+    ==========================================================
     */
 
     if (
-      sensorEnabled
+      orientationWorking
     ) {
 
       return;
@@ -3075,15 +3108,14 @@ card.addEventListener(
       clamp(
 
         (
-          (
-            event.clientX -
-            rect.left
-          )
-
-          /
-          rect.width
-
+          event.clientX -
+          rect.left
         )
+
+        /
+
+        rect.width
+
         *
         100,
 
@@ -3098,15 +3130,14 @@ card.addEventListener(
       clamp(
 
         (
-          (
-            event.clientY -
-            rect.top
-          )
-
-          /
-          rect.height
-
+          event.clientY -
+          rect.top
         )
+
+        /
+
+        rect.height
+
         *
         100,
 
@@ -3115,6 +3146,12 @@ card.addEventListener(
 
       );
 
+
+    /*
+    ==========================================================
+      Pointer -> rotation
+    ==========================================================
+    */
 
     const nx =
 
@@ -3136,34 +3173,36 @@ card.addEventListener(
       50;
 
 
-    /*
-      Rotation
-    */
+    targetY =
 
-    target.y =
       nx *
       MAX_TILT;
 
 
-    target.x =
+    targetX =
+
       ny *
       MAX_TILT;
 
 
     /*
+    ==========================================================
       Light
+    ==========================================================
     */
 
-    targetLight.x =
+    targetLightX =
       x;
 
 
-    targetLight.y =
+    targetLightY =
       y;
 
 
     /*
+    ==========================================================
       Holo
+    ==========================================================
     */
 
     targetHolo =
@@ -3195,7 +3234,7 @@ card.addEventListener(
 
 
 /* ============================================================
-   DESKTOP LEAVE
+   POINTER LEAVE
 ============================================================ */
 
 card.addEventListener(
@@ -3205,8 +3244,13 @@ card.addEventListener(
   () => {
 
 
+    /*
+      如果陀螺仪已经成功，
+      不执行鼠标 reset。
+    */
+
     if (
-      sensorEnabled
+      orientationWorking
     ) {
 
       return;
@@ -3214,19 +3258,19 @@ card.addEventListener(
     }
 
 
-    target.x =
+    targetX =
       0;
 
 
-    target.y =
+    targetY =
       0;
 
 
-    targetLight.x =
+    targetLightX =
       50;
 
 
-    targetLight.y =
+    targetLightY =
       50;
 
 
@@ -3245,59 +3289,59 @@ card.addEventListener(
    INITIAL
 ============================================================ */
 
-applyInitialState();
+rotator.style.setProperty(
+  "--rotate-x",
+  "0deg"
+);
 
 
-function applyInitialState() {
-
-  rotator.style.setProperty(
-    "--rotate-x",
-    "0deg"
-  );
+rotator.style.setProperty(
+  "--rotate-y",
+  "0deg"
+);
 
 
-  rotator.style.setProperty(
-    "--rotate-y",
-    "0deg"
-  );
+rotator.style.setProperty(
+  "--light-x",
+  "50%"
+);
 
 
-  rotator.style.setProperty(
-    "--light-x",
-    "50%"
-  );
+rotator.style.setProperty(
+  "--light-y",
+  "50%"
+);
 
 
-  rotator.style.setProperty(
-    "--light-y",
-    "50%"
-  );
+rotator.style.setProperty(
+  "--light-x2",
+  "50%"
+);
 
 
-  rotator.style.setProperty(
-    "--light-x2",
-    "50%"
-  );
+rotator.style.setProperty(
+  "--light-y2",
+  "50%"
+);
 
 
-  rotator.style.setProperty(
-    "--light-y2",
-    "50%"
-  );
+rotator.style.setProperty(
+  "--holo",
+  "0.18"
+);
 
 
-  rotator.style.setProperty(
-    "--holo",
-    "0.18"
-  );
+rotator.style.setProperty(
+  "--motion",
+  "0"
+);
 
 
-  rotator.style.setProperty(
-    "--motion",
-    "0"
-  );
+/*
+  启动初始渲染。
+*/
 
-}
+startAnimation();
 
 </script>
 
